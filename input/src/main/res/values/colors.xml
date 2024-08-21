@@ -2,4 +2,7 @@
 <resources>
     <color name="grey">#222325</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light_grey">#9F9F9F</color>
+    <color name="blue">#00427D</color>
+    <color name="average_grey">#313234</color>
 </resources>
