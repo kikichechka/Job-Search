@@ -29,103 +29,136 @@
         android:backgroundTint="@color/grey"
         app:cardCornerRadius="8dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="10dp"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/text_job_search"
                 style="@style/header_style"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="@string/job_search" />
+                android:text="@string/job_search"
+                app:layout_constraintBottom_toTopOf="@id/card_edit_email"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <FrameLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_edit_email"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="40dp"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:backgroundTint="@color/average_grey"-->
-<!--                    app:cardCornerRadius="8dp">-->
-
-<!--                    <EditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:inputType="textEmailAddress"-->
-<!--                        android:textSize="16sp" />-->
-
-<!--                </androidx.cardview.widget.CardView>-->
+                android:layout_height="40dp"
+                android:backgroundTint="@color/average_grey"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintBottom_toTopOf="@id/button_continue"
+                app:layout_constraintTop_toBottomOf="@id/text_job_search">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/outlinedTextField"
+                    android:id="@+id/layout_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/email"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    android:layout_marginStart="10dp"
+                    app:boxStrokeWidth="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColorHint="@color/light_grey"
+                    app:hintTextAppearance="@style/hilt_style"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:endIconDrawable="@drawable/close"
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        />
+                        android:hint="@string/email"
+                        android:textColorHint="@color/light_grey"
+                        app:hintTextAppearance="@style/hilt_style"
+                        android:drawableLeft="@drawable/letter"
+                        style="@style/edit_text_style"
+                        android:textCursorDrawable="@null"
+                        android:padding="0dp"
+                        android:paddingStart="0dp"
+                        tools:ignore="RtlSymmetry" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </FrameLayout>
+            </androidx.cardview.widget.CardView>
 
-            <!--            <com.google.android.material.textfield.TextInputLayout-->
-            <!--                android:id="@+id/textField"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="0dp"-->
-            <!--                android:gravity="center_vertical"-->
-            <!--                android:layout_weight="1">-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_continue"
+                style="@style/button_style"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/blue"
+                app:layout_constraintTop_toBottomOf="@id/card_edit_email"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/textButton"
+                android:layout_marginEnd="20dp"
+                android:enabled="false"
+                app:cornerRadius="8dp"
+                app:layout_constraintStart_toStartOf="@id/text_job_search"
+                android:text="@string/text_continue" />
 
-            <!--                <com.google.android.material.textfield.TextInputEditText-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="40dp"-->
-            <!--                    android:textSize="16sp"-->
-            <!--                    android:minWidth="0dp"-->
-            <!--                    android:minHeight="0dp"-->
-            <!--                    android:gravity="center_vertical"-->
-            <!--                    />-->
+            <TextView
+                android:id="@+id/textButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/log_with_password"
+                style="@style/text_button_style"
+                app:layout_constraintTop_toTopOf="@id/button_continue"
+                app:layout_constraintBottom_toBottomOf="@id/button_continue"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            </com.google.android.material.textfield.TextInputLayout>-->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <Button
-                    style="@style/button_style"
-                    android:layout_width="167dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_vertical"
-                    android:backgroundTint="@color/blue"
-                    android:gravity="center"
-                    android:text="@string/text_continue" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/ca"
+        android:id="@+id/search_employees"
         android:layout_width="match_parent"
         android:layout_height="141dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="427dp"
         android:backgroundTint="@color/grey"
-        app:cardCornerRadius="8dp" />
+        app:cardCornerRadius="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_search_employees"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/search_employees"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/text_search_employees"
+                style="@style/header_style"/>
+
+            <TextView
+                android:id="@+id/text_search_employees"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/title_search_employees"
+                app:layout_constraintBottom_toTopOf="@id/button_search_employees"
+                android:text="@string/placement_vacancies_and_access_resume_database"
+                style="@style/text_style"/>
+
+            <Button
+                android:id="@+id/button_search_employees"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Я ищу сотрудников"
+                app:layout_constraintTop_toBottomOf="@id/text_search_employees"
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="@style/button_search_employees"
+                android:backgroundTint="@color/green"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </FrameLayout>
