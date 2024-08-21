@@ -12,11 +12,13 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.example.jobsearch.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private var _binding: ActivityMainBinding? = null
+    private val binding: ActivityMainBinding
+        get() = _binding!!
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -28,5 +30,10 @@ class MainActivity : AppCompatActivity() {
         val badge = binding.bottomNavigation.getOrCreateBadge(R.id.favouritesFragment)
         badge.isVisible = true
         badge.number = 1
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
