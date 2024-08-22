@@ -45,12 +45,14 @@
                 app:layout_constraintBottom_toTopOf="@id/card_edit_email"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_edit_email"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:backgroundTint="@color/average_grey"
                 app:cardCornerRadius="8dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/average_grey"
                 app:layout_constraintBottom_toTopOf="@id/button_continue"
                 app:layout_constraintTop_toBottomOf="@id/text_job_search">
 
@@ -83,22 +85,33 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.button.MaterialButton
+            <TextView
+                android:id="@+id/text_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/you_entered_incorrect_email"
+                android:visibility="gone"
+                style="@style/text_error_style"
+                app:layout_constraintTop_toBottomOf="@id/card_edit_email"
+                app:layout_constraintBottom_toTopOf="@id/button_continue"/>
+
+            <Button
                 android:id="@+id/button_continue"
-                style="@style/button_style"
+                style="@style/button_disabled_continue_style"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:backgroundTint="@color/blue"
+                android:layout_marginEnd="20dp"
+                android:enabled="false"
+                android:background="@drawable/selector"
+                app:backgroundTint="@null"
+                app:backgroundTintMode="multiply"
+                android:text="@string/text_continue"
                 app:layout_constraintTop_toBottomOf="@id/card_edit_email"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/textButton"
-                android:layout_marginEnd="20dp"
-                android:enabled="false"
-                app:cornerRadius="8dp"
-                app:layout_constraintStart_toStartOf="@id/text_job_search"
-                android:text="@string/text_continue" />
+                app:layout_constraintStart_toStartOf="@id/text_job_search" />
 
             <TextView
                 android:id="@+id/textButton"

@@ -5,7 +5,12 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="button_style">
+    <style name="button_enabled_continue_style">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="button_disabled_continue_style">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/light_grey</item>
     </style>
@@ -29,9 +34,24 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
+    <style name="text_error_style">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
     
     <style name="button_search_employees">
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text_sent_code_style">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="title_sent_code_style">
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
 </resources>

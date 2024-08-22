@@ -9,6 +9,15 @@
         android:id="@+id/logAccountFragment"
         android:name="com.example.jobsearch.input.LogAccountFragment"
         android:label="fragment_air_tickets"
-        tools:layout="@layout/fragment_log_account"/>
+        tools:layout="@layout/fragment_log_account">
+        <action
+            android:id="@+id/action_logAccountFragment_to_checkingAccountFragment"
+            app:destination="@id/checkingAccountFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkingAccountFragment"
+        android:name="com.example.jobsearch.input.CheckingAccountFragment"
+        android:label="CheckingAccountFragment" />
 
 </navigation>

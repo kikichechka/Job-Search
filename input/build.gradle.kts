@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id ("kotlin-kapt")
+    alias(libs.plugins.dagger)
 }
 
 android {
@@ -45,4 +47,13 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+
+    implementation(libs.hilt)
+    kapt(libs.hiltCompiler)
+}
+
+kapt {
+    correctErrorTypes = true
 }
