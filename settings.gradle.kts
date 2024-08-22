@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Job Search"
 include(":app")
 include(":input")
+include(":core")

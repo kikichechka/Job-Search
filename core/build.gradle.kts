@@ -1,12 +1,10 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id ("kotlin-kapt")
-    alias(libs.plugins.dagger)
 }
 
 android {
-    namespace = "com.example.jobsearch.input"
+    namespace = "com.example.jobsearch.core"
     compileSdk = 34
 
     defaultConfig {
@@ -32,30 +30,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
 
-    implementation(project(":core"))
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.navigation.common.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.androidx.navigation.fragment.ktx)
-
-    implementation(libs.hilt)
-    kapt(libs.hiltCompiler)
-}
-
-kapt {
-    correctErrorTypes = true
 }

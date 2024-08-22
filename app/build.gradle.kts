@@ -42,6 +42,7 @@ android {
 
 dependencies {
     implementation(project(":input"))
+    implementation(project(":core"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

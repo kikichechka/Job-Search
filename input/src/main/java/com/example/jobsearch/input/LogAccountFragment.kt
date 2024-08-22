@@ -9,17 +9,22 @@ import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.jobsearch.input.databinding.FragmentLogAccountBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LogAccountFragment : Fragment() {
+
+    private var email = ""
     private var _binding: FragmentLogAccountBinding? = null
     private val binding: FragmentLogAccountBinding
         get() = _binding!!
 
+    interface Callback {
+        fun click(str: String)
+    }
+
+    var callback: Callback? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,14 +33,43 @@ class LogAccountFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.edit.setCompoundDrawablesRelativeWithIntrinsicBounds(
-            resources.getDrawable(R.drawable.letter, null), null, null, null
-        )
+        setCompoundDrawablesEdit()
+        editOnFocusChangeListener()
+        editTextChangedListener()
+        buttonContinueClickListener()
+    }
 
+    private fun buttonContinueClickListener() {
+        binding.buttonContinue.setOnClickListener {
+            if (checkEmail())
+                callback?.click(email)
+            else
+                showError()
+        }
+    }
+
+    private fun editTextChangedListener() {
+        binding.edit.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                binding.buttonContinue.isEnabled = !p0.isNullOrBlank()
+                email = p0.toString()
+                changeButton()
+                hideError()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+        })
+    }
+
+    private fun editOnFocusChangeListener() {
         binding.edit.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 binding.edit.hint = null
@@ -43,37 +77,44 @@ class LogAccountFragment : Fragment() {
                 binding.edit.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null)
             }
         }
+    }
 
-        binding.edit.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun setCompoundDrawablesEdit() {
+        binding.edit.setCompoundDrawablesRelativeWithIntrinsicBounds(
+            resources.getDrawable(R.drawable.letter, null), null, null, null
+        )
+    }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                binding.buttonContinue.isEnabled = !p0.isNullOrBlank()
-                changeButton()
-            }
+    private fun checkEmail(): Boolean {
+        return email.matches(Regex(REGEX_EMAIL))
+    }
 
-            override fun afterTextChanged(p0: Editable?) {
-            }
+    private fun showError() {
+        binding.cardEditEmail.strokeColor = resources.getColor(R.color.red, null)
+        binding.textError.visibility = View.VISIBLE
+    }
 
-        })
-
-        binding.buttonContinue.setOnClickListener {
-        }
+    private fun hideError() {
+        binding.cardEditEmail.strokeColor = resources.getColor(R.color.average_grey, null)
+        binding.textError.visibility = View.GONE
     }
 
     private fun changeButton() {
         if (binding.buttonContinue.isEnabled) {
             binding.buttonContinue.setTextAppearance(R.style.button_enabled_continue_style)
-            binding.textError.visibility = View.VISIBLE
         } else {
             binding.buttonContinue.setTextAppearance(R.style.button_disabled_continue_style)
-            binding.textError.visibility = View.GONE
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    companion object {
+        private const val REGEX_EMAIL =
+            """^[A-Za-z0-9+_.-]{2,}+@[A-Za-z0-9]{2,}(.+)[A-Za-z]{2,}${'$'}"""
     }
 }
