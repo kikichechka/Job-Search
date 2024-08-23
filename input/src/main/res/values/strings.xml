@@ -10,4 +10,5 @@
     <string name="placement_vacancies_and_access_resume_database">Размещение вакансий и доступ к базе резюме</string>
     <string name="you_entered_incorrect_email">Вы ввели неверный e-mail</string>
     <string name="sent_code_to">Отправили код на</string>
+    <string name="asterisk_sign">*</string>
 </resources>

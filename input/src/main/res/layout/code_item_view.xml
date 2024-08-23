@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_edit_code_one"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:strokeWidth="0dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/average_grey"
+        app:cardCornerRadius="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_code_one"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/asterisk_sign"
+            android:maxLength="1"
+            android:textColorHint="@color/light_grey_asterisk"
+            style="@style/code_style"
+            android:textCursorDrawable="@null"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:padding="0dp"
+            android:inputType="number"
+            android:imeOptions="actionNext"
+            android:paddingStart="0dp"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>

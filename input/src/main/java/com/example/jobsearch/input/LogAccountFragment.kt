@@ -20,11 +20,12 @@ class LogAccountFragment : Fragment() {
     private val binding: FragmentLogAccountBinding
         get() = _binding!!
 
-    interface Callback {
-        fun click(str: String)
+    interface CallbackLog {
+        fun clickButtonContinue(str: String)
     }
 
-    var callback: Callback? = null
+    var callbackLog: CallbackLog? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +36,9 @@ class LogAccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (email.isNotEmpty()) {
+            binding.edit.requestFocus()
+        }
 
         setCompoundDrawablesEdit()
         editOnFocusChangeListener()
@@ -44,9 +48,9 @@ class LogAccountFragment : Fragment() {
 
     private fun buttonContinueClickListener() {
         binding.buttonContinue.setOnClickListener {
-            if (checkEmail())
-                callback?.click(email)
-            else
+            if (checkEmail()) {
+                callbackLog?.clickButtonContinue(email)
+            } else
                 showError()
         }
     }
