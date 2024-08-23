@@ -43,6 +43,11 @@ android {
 dependencies {
     implementation(project(":input"))
     implementation(project(":core"))
+    implementation(project(":search"))
+    implementation(project(":favourites"))
+    implementation(project(":responses"))
+    implementation(project(":messages"))
+    implementation(project(":profile"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

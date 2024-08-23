@@ -1,15 +1,19 @@
-package com.example.jobsearch.input
+package com.example.jobsearch.input.fragment
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.example.jobsearch.input.CallbackChecking
+import com.example.jobsearch.input.R
 import com.example.jobsearch.input.databinding.FragmentCheckingAccountBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,17 +27,21 @@ class CheckingAccountFragment : Fragment() {
         null
     }
     private lateinit var listContainerCode: List<CodeItemView>
-
-    interface CallbackChecking {
-        fun clickButtonConfirm()
-    }
-
-    var callbackChecking: CallbackChecking? = null
+    private lateinit var callbackChecking: CallbackChecking
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             email = it.getString(KEY_ARG)
+        }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try {
+            callbackChecking = context as CallbackChecking
+        } catch (e: ClassCastException) {
+            throw ClassCastException(e.message)
         }
     }
 
@@ -49,6 +57,7 @@ class CheckingAccountFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setTextSentCode()
         addContainersCode()
+        Log.d("@@@", "${callbackChecking} fr")
         buttonConfirmClickListener()
     }
 
@@ -113,7 +122,9 @@ class CheckingAccountFragment : Fragment() {
 
     private fun buttonConfirmClickListener() {
         binding.buttonConfirm.setOnClickListener {
-            callbackChecking?.clickButtonConfirm()
+            parentFragmentManager.popBackStack()
+            callbackChecking.clickButtonConfirm()
+            Log.d("@@@", "$callbackChecking")
         }
     }
 
@@ -132,6 +143,6 @@ class CheckingAccountFragment : Fragment() {
     }
 }
 
-fun Fragment.showWindowKeyboard() = WindowCompat
+fun CheckingAccountFragment.showWindowKeyboard() = WindowCompat
     .getInsetsController(requireActivity().window, requireView())
     .show(WindowInsetsCompat.Type.ime())

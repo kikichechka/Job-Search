@@ -1,6 +1,7 @@
-package com.example.jobsearch.input
+package com.example.jobsearch.input.fragment
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,8 +10,11 @@ import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.jobsearch.input.CallbackLog
+import com.example.jobsearch.input.R
 import com.example.jobsearch.input.databinding.FragmentLogAccountBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class LogAccountFragment : Fragment() {
@@ -20,11 +24,7 @@ class LogAccountFragment : Fragment() {
     private val binding: FragmentLogAccountBinding
         get() = _binding!!
 
-    interface CallbackLog {
-        fun clickButtonContinue(str: String)
-    }
-
-    var callbackLog: CallbackLog? = null
+    private lateinit var callbackLog: CallbackLog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,22 +34,37 @@ class LogAccountFragment : Fragment() {
         return binding.root
     }
 
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try {
+            callbackLog = context as CallbackLog
+        } catch (e: ClassCastException) {
+            throw ClassCastException(e.message)
+        }
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (email.isNotEmpty()) {
-            binding.edit.requestFocus()
-        }
 
+        editRequestFocus()
         setCompoundDrawablesEdit()
         editOnFocusChangeListener()
         editTextChangedListener()
         buttonContinueClickListener()
     }
 
+    private fun editRequestFocus() {
+        if (email.isNotEmpty()) {
+            binding.edit.requestFocus()
+        }
+    }
+
     private fun buttonContinueClickListener() {
         binding.buttonContinue.setOnClickListener {
             if (checkEmail()) {
-                callbackLog?.clickButtonContinue(email)
+                callbackLog.clickButtonContinue(email)
             } else
                 showError()
         }

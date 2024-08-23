@@ -1,9 +1,9 @@
-package com.example.jobsearch.input
+package com.example.jobsearch.input.fragment
 
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import android.widget.LinearLayout
+import com.example.jobsearch.input.R
 import com.example.jobsearch.input.databinding.CodeItemViewBinding
 
 class CodeItemView(context: Context, attributeSet: AttributeSet? = null) :

@@ -23,3 +23,8 @@ rootProject.name = "Job Search"
 include(":app")
 include(":input")
 include(":core")
+include(":search")
+include(":favourites")
+include(":responses")
+include(":messages")
+include(":profile")
