@@ -1,0 +1,19 @@
+package com.example.jobsearch.search.presentation.uimodel
+
+import com.example.jobsearch.search.domain.model.Offer
+
+class Offer(
+    val id: String?,
+    val title: String,
+    val button: TextButton?,
+    val link: String
+)
+
+fun Offer.mapToUi(): com.example.jobsearch.search.presentation.uimodel.Offer {
+    return Offer(
+        id = id,
+        title = title,
+        button = button?.mapToUi(),
+        link = link
+    )
+}

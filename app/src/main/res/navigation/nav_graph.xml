@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.jobsearch.search.SearchFragment"
+        android:name="com.example.jobsearch.search.presentation.SearchFragment"
         android:label="SearchFragment" />
 
     <fragment
