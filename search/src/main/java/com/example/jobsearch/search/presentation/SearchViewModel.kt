@@ -20,7 +20,7 @@ class SearchViewModel @Inject constructor(
     private val _vacancy = MutableStateFlow(listOf<Vacancy>())
     val vacancy = _vacancy.asStateFlow()
 
-    init {
+    fun loadData() {
         viewModelScope.launch {
             getDataUseCase.get()?.mapToUi()?.let {
                 _offers.value = it.offers

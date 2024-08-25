@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.jobsearch.search.R
 import com.example.jobsearch.search.databinding.FragmentSearchBinding
+import com.example.jobsearch.search.presentation.uimodel.Vacancy
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,6 +30,7 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        viewModel.loadData()
         _binding = FragmentSearchBinding.inflate(inflater)
         return binding.root
     }
@@ -39,6 +41,7 @@ class SearchFragment : Fragment() {
         val recommendationsAdapter = RecommendationsAdapter(click = {uri ->  clickOfferCallback(uri)})
         binding.recyclerRecommendations.adapter = recommendationsAdapter
 
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.offers.collect{
                 recommendationsAdapter.changeData(it)
@@ -47,8 +50,14 @@ class SearchFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.vacancy.collect{
-                val catPlural = resources.getQuantityString(R.plurals.count_vacancies, it.size, it.size)
-                binding.buttonAllVacancies.text = catPlural
+
+                val countVacancies = resources.getQuantityString(R.plurals.count_vacancies, it.size, it.size)
+                val vacancyAdapter = VacancyAdapter(countVacancies = countVacancies, clickVacancy = {vacancy -> clickVacancyCallback(vacancy) })
+
+                binding.recyclerVacanciesForYou.adapter = vacancyAdapter
+                if (it.isNotEmpty()) {
+                    vacancyAdapter.changeData(it.subList(0,3))
+                }
             }
         }
     }
@@ -56,6 +65,10 @@ class SearchFragment : Fragment() {
     private fun clickOfferCallback(uri: String) {
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
         startActivity(browserIntent)
+    }
+
+    private fun clickVacancyCallback(vacancy: Vacancy) {
+
     }
 
     override fun onDestroy() {

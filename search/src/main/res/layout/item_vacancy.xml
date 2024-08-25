@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container_linear_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/dark_average_grey"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_card_vacancy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/currently_persons_viewing"
+                    style="@style/currently_persons_viewing_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp"
+                    android:text="Сейчас просматривает 1 человек"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/isFavorite"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/title_vacancy"
+                    style="@style/title_vacancy_style"
+                    android:layout_width="219dp"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp"
+                    android:text="Дизайнер для маркетплейсов Wildberries, Ozon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/currently_persons_viewing" />
+
+                <TextView
+                    android:id="@+id/salary_short"
+                    style="@style/salary_short_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp"
+                    android:visibility="gone"
+                    android:text="1500-2900 Br"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title_vacancy" />
+
+                <TextView
+                    android:id="@+id/address_town"
+                    style="@style/card_vacancy_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Минск"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/salary_short" />
+
+                <TextView
+                    android:id="@+id/company"
+                    style="@style/card_vacancy_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Еком дизайн"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/address_town" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/verification_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/company"
+                    app:layout_constraintStart_toEndOf="@id/company"
+                    app:layout_constraintTop_toTopOf="@id/company" />
+
+
+                <ImageView
+                    android:id="@+id/icon_briefcase"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/icon_briefcase"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/company" />
+
+                <TextView
+                    android:id="@+id/experience_preview_text"
+                    style="@style/card_vacancy_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Опыт от 1 года до 3 лет"
+                    app:layout_constraintBottom_toBottomOf="@id/icon_briefcase"
+                    app:layout_constraintStart_toEndOf="@id/icon_briefcase" />
+
+                <TextView
+                    android:id="@+id/published_date"
+                    style="@style/published_date_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Опубликовано 16 февраля"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/icon_briefcase" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_respond"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:backgroundTint="@color/green"
+                style="@style/button_respond_style"
+                android:text="@string/respond" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/button_all_vacancies"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:shadowRadius="8"
+        android:background="@drawable/button"
+        style="@style/button_all_vacancies_style"
+        app:backgroundTint="@null"
+        android:visibility="gone"
+        android:text="Еще 143 вакансии"/>
+
+</LinearLayout>

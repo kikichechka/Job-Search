@@ -8,7 +8,7 @@
         android:id="@+id/container_search"
         android:layout_width="132dp"
         android:layout_height="120dp"
-        android:backgroundTint="@color/average_grey"
+        android:backgroundTint="@color/dark_average_grey"
         app:cardCornerRadius="8dp"
         android:layout_marginEnd="7dp">
 

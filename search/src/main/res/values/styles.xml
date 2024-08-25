@@ -25,4 +25,35 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/green</item>
     </style>
+
+    <style name="currently_persons_viewing_style">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+    <style name="title_vacancy_style">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="salary_short_style">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="card_vacancy_style">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="published_date_style">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/basic_grey</item>
+    </style>
+
+    <style name="button_respond_style">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 </resources>

@@ -83,23 +83,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_vacancies_for_you"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="16dp"
         app:layout_constraintTop_toBottomOf="@id/title_vacancies_for_you"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
-    <Button
-        android:id="@+id/button_all_vacancies"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:shadowRadius="8"
-        android:background="@drawable/button"
-        style="@style/button_all_vacancies_style"
-        app:backgroundTint="@null"
-        app:layout_constraintTop_toBottomOf="@id/recycler_vacancies_for_you"
-        android:layout_marginHorizontal="16dp"
-        android:text="Еще 143 вакансии"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
