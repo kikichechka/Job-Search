@@ -7,6 +7,6 @@ class GetDataUseCaseImpl @Inject constructor(
     private val dataRepository: DataRepository
 ): GetDataUseCase {
     override suspend fun get(): AllData? {
-        return dataRepository.getData()
+        return dataRepository.getAllData()
     }
 }

@@ -11,3 +11,9 @@ fun TextButtonDto.mapToModel(): TextButton {
         text = text
     )
 }
+
+fun TextButton.mapToDto(): TextButtonDto {
+    return TextButtonDto(
+        text = text
+    )
+}

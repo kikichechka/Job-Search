@@ -4,7 +4,7 @@ import com.example.jobsearch.search.domain.model.AllData
 
 data class AllDataDto(
     val offers: List<OfferDto>,
-    val vacancies: List<VacancyDto>
+    var vacancies: List<VacancyDto>
 )
 
 fun AllDataDto.mapToModel(): AllData {

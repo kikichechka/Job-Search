@@ -10,8 +10,7 @@ import com.example.jobsearch.databinding.ActivityMainBinding
 import com.example.jobsearch.input.CallbackChecking
 import com.example.jobsearch.input.CallbackLog
 import com.example.jobsearch.input.fragment.CheckingAccountFragment
-import com.example.jobsearch.search.presentation.fragment.ClickFavouriteVacancy
-import com.example.jobsearch.search.presentation.fragment.ClickNotFavouriteVacancy
+import com.example.jobsearch.search.presentation.FavouriteVacancy
 import com.example.jobsearch.search.presentation.fragment.compliance.VacanciesComplianceFragment
 import com.example.jobsearch.search.presentation.fragment.search.ClickAllVacancies
 import com.example.jobsearch.search.presentation.uimodel.ListVacancies
@@ -21,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), CallbackLog,
-    CallbackChecking, ClickAllVacancies, ClickFavouriteVacancy, ClickNotFavouriteVacancy {
+    CallbackChecking, ClickAllVacancies, FavouriteVacancy {
     private var _binding: ActivityMainBinding? = null
     private val binding: ActivityMainBinding
         get() = _binding!!
@@ -72,15 +71,8 @@ class MainActivity : AppCompatActivity(), CallbackLog,
         navController.navigate(R.id.action_searchFragment_to_vacanciesComplianceFragment, bundle)
     }
 
-    override fun clickFavourite() {
-        badge.number++
-        checkBadge()
-    }
-
-    override fun clickNotFavourite() {
-        if (badge.number > 0) {
-            badge.number--
-        }
+    override fun countFavourite(number: Int) {
+        badge.number = number
         checkBadge()
     }
 

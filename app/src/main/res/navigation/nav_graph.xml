@@ -20,7 +20,8 @@
     <fragment
         android:id="@+id/checkingAccountFragment"
         android:name="com.example.jobsearch.input.fragment.CheckingAccountFragment"
-        android:label="CheckingAccountFragment" >
+        android:label="CheckingAccountFragment"
+        tools:layout="@layout/fragment_checking_account">
         <action
             android:id="@+id/action_checkingAccountFragment_to_searchFragment"
             app:destination="@id/searchFragment"
@@ -31,7 +32,8 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.jobsearch.search.presentation.fragment.search.SearchFragment"
-        android:label="SearchFragment" >
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_vacanciesComplianceFragment"
             app:destination="@id/vacanciesComplianceFragment" />
@@ -40,7 +42,8 @@
     <fragment
         android:id="@+id/favouritesFragment"
         android:name="com.example.jobsearch.favourites.FavouritesFragment"
-        android:label="FavouritesFragment" />
+        android:label="FavouritesFragment"
+        tools:layout="@layout/fragment_favourites"/>
     <fragment
         android:id="@+id/responsesFragment"
         android:name="com.example.jobsearch.responses.ResponsesFragment"
@@ -56,6 +59,7 @@
     <fragment
         android:id="@+id/vacanciesComplianceFragment"
         android:name="com.example.jobsearch.search.presentation.fragment.compliance.VacanciesComplianceFragment"
-        android:label="VacanciesComplianceFragment" />
+        android:label="VacanciesComplianceFragment"
+        tools:layout="@layout/fragment_vacancies_compliance"/>
 
 </navigation>

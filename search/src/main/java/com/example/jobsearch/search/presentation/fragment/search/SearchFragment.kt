@@ -15,13 +15,11 @@ import com.example.jobsearch.search.databinding.FragmentSearchBinding
 import com.example.jobsearch.search.presentation.SearchViewModelsFactory
 import com.example.jobsearch.search.presentation.adapter.RecommendationsAdapter
 import com.example.jobsearch.search.presentation.adapter.SearchVacancyAdapter
-import com.example.jobsearch.search.presentation.fragment.ClickFavouriteVacancy
-import com.example.jobsearch.search.presentation.fragment.ClickNotFavouriteVacancy
+import com.example.jobsearch.search.presentation.FavouriteVacancy
 import com.example.jobsearch.search.presentation.uimodel.ListVacancies
 import com.example.jobsearch.search.presentation.uimodel.Vacancy
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.text.FieldPosition
 import javax.inject.Inject
 
 
@@ -35,17 +33,16 @@ class SearchFragment : Fragment() {
     lateinit var searchViewModelsFactory: SearchViewModelsFactory
     private val viewModel: SearchViewModel by viewModels { searchViewModelsFactory }
     private lateinit var clickAllVacancies: ClickAllVacancies
-    private lateinit var clickFavouriteVacancy: ClickFavouriteVacancy
-    private lateinit var clickNotFavouriteVacancy: ClickNotFavouriteVacancy
+    private lateinit var favouriteVacancy: FavouriteVacancy
     private lateinit var vacancyAdapter: SearchVacancyAdapter
-    private var listVacancies = listOf<Vacancy>()
+    private var allListVacancies = listOf<Vacancy>()
+    private var countVacancies: String = ""
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
             clickAllVacancies = context as ClickAllVacancies
-            clickFavouriteVacancy = context as ClickFavouriteVacancy
-            clickNotFavouriteVacancy = context as ClickNotFavouriteVacancy
+            favouriteVacancy = context as FavouriteVacancy
         } catch (e: ClassCastException) {
             throw ClassCastException(e.message)
         }
@@ -75,24 +72,26 @@ class SearchFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.favoriteVacancy.collect {
+                favouriteVacancy.countFavourite(it)
+            }
+        }
+
+        vacancyAdapter = SearchVacancyAdapter(
+            countVacancies = "${resources.getString(R.string.still)} $countVacancies",
+            clickVacancy = { vacancy -> clickVacancyCallback(vacancy) },
+            clickButtonAllVacancies = { clickAllVacancies() },
+            clickFavourite = { vacancy -> clickFavorite(vacancy) },
+            clickNotFavourite = { vacancy -> clickNotFavorite(vacancy) }
+        )
+
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.vacancy.collect {
-
-                checkingFavoriteReceivedVacancies(it)
-
-
-                val countVacancies =
-                    resources.getQuantityString(R.plurals.count_vacancies, it.size, it.size)
-                vacancyAdapter = SearchVacancyAdapter(
-                    countVacancies = "${resources.getString(R.string.still)} $countVacancies",
-                    clickVacancy = { vacancy -> clickVacancyCallback(vacancy) },
-                    clickButtonAllVacancies = { clickAllVacancies.click(ListVacancies(it)) },
-                    clickFavourite = { position -> clickFavorite(position) },
-                    clickNotFavourite = { position -> clickNotFavorite(position) }
-                )
+                allListVacancies = it
+                countVacancies = resources.getQuantityString(R.plurals.count_vacancies, it.size, it.size)
                 if (it.isNotEmpty()) {
                     val partList = it.subList(0, 3)
                     vacancyAdapter.changeData(partList)
-                    listVacancies = partList
                 }
 
                 binding.recyclerVacanciesForYou.adapter = vacancyAdapter
@@ -100,14 +99,8 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun checkingFavoriteReceivedVacancies(list: List<Vacancy>) {
-        list.filter { vacancy -> vacancy.isFavorite }.let { listVacancies ->
-            if (listVacancies.isNotEmpty()) {
-                for (vacancy in listVacancies) {
-                    clickFavouriteVacancy.clickFavourite()
-                }
-            }
-        }
+    private fun clickAllVacancies() {
+        clickAllVacancies.click(ListVacancies(allListVacancies))
     }
 
     private fun clickOfferCallback(uri: String) {
@@ -120,16 +113,16 @@ class SearchFragment : Fragment() {
 
     }
 
-    private fun clickFavorite(position: Int) {
-        clickFavouriteVacancy.clickFavourite()
-        listVacancies[position].isFavorite = true
-        vacancyAdapter.changeData(listVacancies)
+    private fun clickFavorite(vacancy: Vacancy) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.addInFavoritesVacancy(vacancy)
+        }
     }
 
-    private fun clickNotFavorite(position: Int) {
-        clickNotFavouriteVacancy.clickNotFavourite()
-        listVacancies[position].isFavorite = false
-        vacancyAdapter.changeData(listVacancies)
+    private fun clickNotFavorite(vacancy: Vacancy) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.removeFromFavoritesVacancy(vacancy)
+        }
     }
 
     override fun onDestroy() {

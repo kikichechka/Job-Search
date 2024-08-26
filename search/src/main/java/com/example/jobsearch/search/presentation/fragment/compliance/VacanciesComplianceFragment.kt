@@ -11,8 +11,7 @@ import androidx.annotation.RequiresApi
 import com.example.jobsearch.search.R
 import com.example.jobsearch.search.databinding.FragmentVacanciesComplianceBinding
 import com.example.jobsearch.search.presentation.adapter.VacanciesComplianceAdapter
-import com.example.jobsearch.search.presentation.fragment.ClickFavouriteVacancy
-import com.example.jobsearch.search.presentation.fragment.ClickNotFavouriteVacancy
+import com.example.jobsearch.search.presentation.ClickNotFavouriteVacancy
 import com.example.jobsearch.search.presentation.uimodel.ListVacancies
 import com.example.jobsearch.search.presentation.uimodel.Vacancy
 
@@ -22,13 +21,13 @@ class VacanciesComplianceFragment : Fragment() {
     private val binding: FragmentVacanciesComplianceBinding
         get() = _binding!!
     private lateinit var adapter: VacanciesComplianceAdapter
-    private lateinit var clickFavouriteVacancy: ClickFavouriteVacancy
+//    private lateinit var clickFavouriteVacancy: ClickFavouriteVacancy
     private lateinit var clickNotFavouriteVacancy: ClickNotFavouriteVacancy
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
-            clickFavouriteVacancy = context as ClickFavouriteVacancy
+//            clickFavouriteVacancy = context as ClickFavouriteVacancy
             clickNotFavouriteVacancy = context as ClickNotFavouriteVacancy
         } catch (e: ClassCastException) {
             throw ClassCastException(e.message)
@@ -55,8 +54,8 @@ class VacanciesComplianceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         adapter =
             VacanciesComplianceAdapter(clickVacancy = { vacancy -> clickVacancyCallback(vacancy) },
-                clickFavourite = { position -> clickFavorite(position) },
-                clickNotFavourite = { position -> clickNotFavorite(position) })
+                clickFavourite = { vacancy -> clickFavorite(vacancy) },
+                clickNotFavourite = { vacancy -> clickNotFavorite(vacancy) })
         list?.let {
             binding.recyclerAllVacancies.adapter = adapter
             adapter.changeData(it.listVacancies)
@@ -71,20 +70,20 @@ class VacanciesComplianceFragment : Fragment() {
         }
     }
 
-    private fun clickFavorite(position: Int) {
-        clickFavouriteVacancy.clickFavourite()
-        list?.let {
-            it.listVacancies[position].isFavorite = true
-            adapter.changeData(it.listVacancies)
-        }
+    private fun clickFavorite(vacancy: Vacancy) {
+//        clickFavouriteVacancy.clickFavourite()
+//        list?.let {
+//            it.listVacancies[position].isFavorite = true
+//            adapter.changeData(it.listVacancies)
+//        }
     }
 
-    private fun clickNotFavorite(position: Int) {
-        clickNotFavouriteVacancy.clickNotFavourite()
-        list?.let {
-            it.listVacancies[position].isFavorite = false
-            adapter.changeData(it.listVacancies)
-        }
+    private fun clickNotFavorite(vacancy: Vacancy) {
+//        clickNotFavouriteVacancy.clickNotFavourite()
+//        list?.let {
+//            it.listVacancies[position].isFavorite = false
+//            adapter.changeData(it.listVacancies)
+//        }
     }
 
     private fun clickVacancyCallback(vacancy: Vacancy) {

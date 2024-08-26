@@ -7,8 +7,8 @@ class SearchVacancyAdapter(
     private val countVacancies: String,
     private val clickVacancy: (vacancy: Vacancy) -> Unit,
     private val clickButtonAllVacancies: () -> Unit,
-    clickFavourite: (position: Int) -> Unit,
-    clickNotFavourite: (position: Int) -> Unit
+    clickFavourite: (vacancy: Vacancy) -> Unit,
+    clickNotFavourite: (vacancy: Vacancy) -> Unit
 ) : VacancyAdapter(clickFavourite = clickFavourite, clickNotFavourite = clickNotFavourite) {
 
     override fun onBindViewHolder(holder: VacancyViewHolder, position: Int) {

@@ -10,8 +10,8 @@ import com.example.jobsearch.search.databinding.ItemVacancyBinding
 import com.example.jobsearch.search.presentation.uimodel.Vacancy
 
 open class VacancyAdapter(
-    private val clickFavourite: (position: Int) -> Unit,
-    private val clickNotFavourite: (position: Int) -> Unit
+    private val clickFavourite: (vacancy: Vacancy) -> Unit,
+    private val clickNotFavourite: (vacancy: Vacancy) -> Unit
 ) : RecyclerView.Adapter<VacancyAdapter.VacancyViewHolder>() {
     var list: List<Vacancy> = listOf()
 
@@ -112,12 +112,12 @@ open class VacancyAdapter(
             when (vacancy.isFavorite) {
                 true -> {
                     notFavourite(binding)
-                    clickNotFavourite(position)
+                    clickNotFavourite(list[position])
                 }
 
                 false -> {
                     favourite(binding)
-                    clickFavourite(position)
+                    clickFavourite(list[position])
                 }
             }
         }

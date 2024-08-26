@@ -1,9 +1,8 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.libsDirectory
 
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id ("kotlin-kapt")
+    id("kotlin-kapt")
     alias(libs.plugins.dagger)
     id("kotlin-parcelize")
 }
@@ -58,6 +57,10 @@ dependencies {
 
     implementation(libs.fragment.ktx)
     implementation(libs.viewmodel.ktx)
+
+    implementation(libs.room.ktx)
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
 }
 
 kapt {
