@@ -1,13 +1,10 @@
-package com.example.jobsearch.search.presentation
+package com.example.jobsearch.search.presentation.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.example.jobsearch.search.R
 import com.example.jobsearch.search.databinding.ItemRecommendationBinding
 import com.example.jobsearch.search.presentation.uimodel.IconRecommendationId
 import com.example.jobsearch.search.presentation.uimodel.Offer

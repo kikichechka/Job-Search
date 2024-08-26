@@ -3,6 +3,7 @@ package com.example.jobsearch.search.data.dto
 import com.example.jobsearch.search.domain.model.Vacancy
 
 data class VacancyDto(
+    val id: String,
     val lookingNumber: Int?,
     val title: String,
     val address: AddressDto,
@@ -20,6 +21,7 @@ data class VacancyDto(
 
 fun VacancyDto.mapToModel(): Vacancy {
     return Vacancy(
+        id = id,
         lookingNumber = lookingNumber,
         title = title,
         address = address.mapToModel(),

@@ -4,15 +4,19 @@
     <string name="position_keywords">Должность, ключевые слова</string>
     <string name="vacancies_for_you">Вакансии для вас</string>
     <string name="respond">Откликнуться</string>
+    <string name="published">Опубликовано</string>
+    <string name="position_for_suitable_vacancies">Должность по подходящим вакансиям</string>
+    <string name="by_correspondence">По соответствию</string>
+    <string name="still">Еще</string>
 
 
     <plurals name="count_vacancies">
         <item quantity="zero">Нет вакансий</item>
-        <item quantity="one">Еще %1$d вакансия</item>
-        <item quantity="two">Еще %1$d вакансии</item>
-        <item quantity="few">Еще %1$d вакансии</item>
-        <item quantity="many">Еще %1$d вакансий</item>
-        <item quantity="other">Еще %1$d вакансий</item>
+        <item quantity="one">%1$d вакансия</item>
+        <item quantity="two">%1$d вакансии</item>
+        <item quantity="few">%1$d вакансии</item>
+        <item quantity="many">%1$d вакансий</item>
+        <item quantity="other">%1$d вакансий</item>
     </plurals>
 
     <plurals name="looking_number_peoples">

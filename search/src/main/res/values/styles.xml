@@ -56,4 +56,14 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="number_vacancies_style">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="by_correspondence_style">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/special_blue</item>
+    </style>
+
 </resources>

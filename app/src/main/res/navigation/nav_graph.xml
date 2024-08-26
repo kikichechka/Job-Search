@@ -25,13 +25,17 @@
             android:id="@+id/action_checkingAccountFragment_to_searchFragment"
             app:destination="@id/searchFragment"
             app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="false"/>
     </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.jobsearch.search.presentation.SearchFragment"
-        android:label="SearchFragment" />
+        android:name="com.example.jobsearch.search.presentation.fragment.search.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_vacanciesComplianceFragment"
+            app:destination="@id/vacanciesComplianceFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/favouritesFragment"
@@ -49,5 +53,9 @@
         android:id="@+id/profileFragment"
         android:name="com.example.jobsearch.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/vacanciesComplianceFragment"
+        android:name="com.example.jobsearch.search.presentation.fragment.compliance.VacanciesComplianceFragment"
+        android:label="VacanciesComplianceFragment" />
 
 </navigation>

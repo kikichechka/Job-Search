@@ -1,4 +1,4 @@
-package com.example.jobsearch.search.presentation
+package com.example.jobsearch.search.presentation.fragment.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

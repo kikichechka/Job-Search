@@ -1,6 +1,7 @@
 package com.example.jobsearch.search.domain.model
 
 class Vacancy (
+    val id: String,
     val lookingNumber: Int?,
     val title: String,
     val address: Address,

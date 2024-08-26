@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragment.search.SearchFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.fragment.compliance.VacanciesComplianceFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/container_search"
@@ -26,7 +26,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/search"
+                android:src="@drawable/icon_back"
                 android:layout_marginHorizontal="10dp"
                 android:layout_gravity="center"/>
 
@@ -35,7 +35,10 @@
                 android:layout_height="wrap_content"
                 style="@style/text_position_keywords_style"
                 android:layout_gravity="center"
-                android:text="@string/position_keywords"/>
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginEnd="10dp"
+                android:text="@string/position_for_suitable_vacancies"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -57,38 +60,44 @@
             android:src="@drawable/settings"
             android:layout_gravity="center"/>
     </androidx.cardview.widget.CardView>
-    
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_recommendations"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginVertical="16dp"
-        app:layout_constraintTop_toBottomOf="@id/container_search"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     <TextView
-        android:id="@+id/title_vacancies_for_you"
+        android:id="@+id/number_vacancies"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/recycler_recommendations"
-        app:layout_constraintStart_toStartOf="@id/container_search"
-        android:text="@string/vacancies_for_you"
-        style="@style/text_vacancies_for_you_style"/>
+        android:text="145 вакансий"
+        style="@style/number_vacancies_style"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/container_search"
+        app:layout_constraintStart_toStartOf="@id/container_search"/>
+
+    <ImageView
+        android:id="@+id/icon_by_correspondence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon"
+        app:layout_constraintEnd_toEndOf="@id/icon_settings"
+        app:layout_constraintBottom_toBottomOf="@id/number_vacancies"/>
+
+    <TextView
+        android:id="@+id/by_correspondence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/by_correspondence"
+        android:layout_marginEnd="7dp"
+        style="@style/by_correspondence_style"
+        app:layout_constraintTop_toTopOf="@id/number_vacancies"
+        app:layout_constraintEnd_toStartOf="@id/icon_by_correspondence"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_vacancies_for_you"
+        android:id="@+id/recycler_all_vacancies"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@id/title_vacancies_for_you"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintTop_toBottomOf="@id/number_vacancies"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
     </androidx.recyclerview.widget.RecyclerView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

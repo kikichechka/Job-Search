@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id ("kotlin-kapt")
     alias(libs.plugins.dagger)
+    id("kotlin-parcelize")
 }
 
 android {

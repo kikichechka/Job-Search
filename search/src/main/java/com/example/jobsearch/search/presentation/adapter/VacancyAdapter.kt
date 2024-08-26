@@ -1,23 +1,22 @@
-package com.example.jobsearch.search.presentation
+package com.example.jobsearch.search.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.ViewUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jobsearch.search.R
 import com.example.jobsearch.search.databinding.ItemVacancyBinding
 import com.example.jobsearch.search.presentation.uimodel.Vacancy
 
-class VacancyAdapter(
-    private val countVacancies: String,
-    private val clickVacancy: (vacancy: Vacancy) -> Unit
+open class VacancyAdapter(
+    private val clickFavourite: (position: Int) -> Unit,
+    private val clickNotFavourite: (position: Int) -> Unit
 ) : RecyclerView.Adapter<VacancyAdapter.VacancyViewHolder>() {
-    private var list: List<Vacancy> = listOf()
+    var list: List<Vacancy> = listOf()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun changeData(newList: List<Vacancy>) {
+    open fun changeData(newList: List<Vacancy>) {
         list = newList
         notifyDataSetChanged()
     }
@@ -36,64 +35,90 @@ class VacancyAdapter(
         return list.size
     }
 
-    @SuppressLint("SimpleDateFormat", "UseCompatLoadingForDrawables", "SetTextI18n")
     override fun onBindViewHolder(holder: VacancyViewHolder, position: Int) {
         val vacancy = list[position]
         lookingNumber(holder, vacancy)
-        favourite(holder, vacancy)
+        installFavourite(holder, vacancy)
         salaryShort(holder, vacancy)
         with(holder.binding) {
             titleVacancy.text = vacancy.title
             addressTown.text = vacancy.address.town
             company.text = vacancy.company
             experiencePreviewText.text = vacancy.experience.previewText
-
-            val date = vacancy.publishedDate.split("-")
-            val data = date[2].toInt()
-            val month = date[1].toInt() - 1
-            publishedDate.text =
-                "Опубликовано $data ${root.resources.getStringArray(R.array.months)[month]}"
         }
+        changeFavourite(holder.binding, vacancy, position)
+        publishedDate(holder.binding, vacancy)
+    }
 
-        buttonAllVacancies(holder, position)
+    @SuppressLint("SetTextI18n")
+    private fun publishedDate(binding: ItemVacancyBinding, vacancy: Vacancy) {
+        val date = vacancy.publishedDate.split("-")
+        val data = date[2].toInt()
+        val month = date[1].toInt() - 1
+        binding.publishedDate.text =
+            "${binding.root.resources.getString(R.string.published)} $data ${
+                binding.root.resources.getStringArray(
+                    R.array.months
+                )[month]
+            }"
     }
 
     private fun salaryShort(holder: VacancyViewHolder, vacancy: Vacancy) {
+
         vacancy.salary.short?.let {
             with(holder.binding) {
                 salaryShort.text = it
                 salaryShort.visibility = View.VISIBLE
             }
         }
+        if (vacancy.salary.short == null) {
+            holder.binding.salaryShort.visibility = View.GONE
+        }
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    private fun favourite(holder: VacancyViewHolder, vacancy: Vacancy) {
+    private fun installFavourite(holder: VacancyViewHolder, vacancy: Vacancy) {
         with(holder.binding) {
             when (vacancy.isFavorite) {
-                true -> isFavorite.setImageDrawable(
-                    root.resources.getDrawable(
-                        R.drawable.favorite_heart,
-                        null
-                    )
-                )
+                true -> favourite(this)
 
-                false -> isFavorite.setImageDrawable(
-                    root.resources.getDrawable(
-                        R.drawable.not_favorite_heart,
-                        null
-                    )
-                )
+                false -> notFavourite(this)
             }
         }
     }
 
-    private fun buttonAllVacancies(holder: VacancyViewHolder, position: Int) {
-        with(holder.binding) {
-            buttonAllVacancies.visibility = View.GONE
-            if (position == list.size - 1) {
-                buttonAllVacancies.visibility = View.VISIBLE
-                buttonAllVacancies.text = countVacancies
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun notFavourite(binding: ItemVacancyBinding) {
+        binding.isFavorite.setImageDrawable(
+            binding.root.resources.getDrawable(
+                R.drawable.not_favorite_heart,
+                null
+            )
+        )
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun favourite(binding: ItemVacancyBinding) {
+        binding.isFavorite.setImageDrawable(
+            binding.root.resources.getDrawable(
+                R.drawable.favorite_heart,
+                null
+            )
+        )
+    }
+
+    private fun changeFavourite(binding: ItemVacancyBinding, vacancy: Vacancy, position: Int) {
+        binding.isFavorite.setOnClickListener {
+            when (vacancy.isFavorite) {
+                true -> {
+                    notFavourite(binding)
+                    clickNotFavourite(position)
+                }
+
+                false -> {
+                    favourite(binding)
+                    clickFavourite(position)
+                }
             }
         }
     }

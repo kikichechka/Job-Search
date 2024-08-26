@@ -2,6 +2,7 @@ package com.example.jobsearch.search.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.jobsearch.search.presentation.fragment.search.SearchViewModel
 import javax.inject.Inject
 
 class SearchViewModelsFactory @Inject constructor(
