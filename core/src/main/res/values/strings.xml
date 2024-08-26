@@ -1,0 +1,25 @@
+<resources>
+    <string name="respond">Откликнуться</string>
+    <string name="still">Еще</string>
+    <string name="published">Опубликовано</string>
+
+    <plurals name="looking_number_peoples">
+        <item quantity="few">Сейчас просматривает %1$d человека</item>
+        <item quantity="other">Сейчас просматривает %1$d человек</item>
+    </plurals>
+
+    <string-array name="months">
+        <item>января</item>
+        <item>февраля</item>
+        <item>марта</item>
+        <item>апреля</item>
+        <item>мая</item>
+        <item>июня</item>
+        <item>июля</item>
+        <item>августа</item>
+        <item>сентября</item>
+        <item>октября</item>
+        <item>ноября</item>
+        <item>декабря</item>
+    </string-array>
+</resources>

@@ -17,7 +17,7 @@ import com.example.jobsearch.search.data.db.model.VacancyInfoDb
         ExperienceDb::class,
         SalaryDb::class
     ],
-    version = 5
+    version = 7
 )
 @TypeConverters(
     ConvertersListString::class,

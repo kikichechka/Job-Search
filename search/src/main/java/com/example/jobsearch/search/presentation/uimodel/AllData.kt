@@ -1,8 +1,8 @@
 package com.example.jobsearch.search.presentation.uimodel
 
-import com.example.jobsearch.search.data.dto.AllDataDto
-import com.example.jobsearch.search.data.dto.mapToModel
+import com.example.jobsearch.core.model.Vacancy
 import com.example.jobsearch.search.domain.model.AllData
+import com.example.jobsearch.search.presentation.fragment.search.mapToUi
 
 class AllData (
     val offers: List<Offer>,

@@ -1,6 +1,7 @@
 package com.example.jobsearch.search.presentation.uimodel
 
 import android.os.Parcelable
+import com.example.jobsearch.core.model.Vacancy
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

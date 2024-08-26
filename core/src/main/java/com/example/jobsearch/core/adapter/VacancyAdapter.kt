@@ -1,17 +1,18 @@
-package com.example.jobsearch.search.presentation.adapter
+package com.example.jobsearch.core.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.jobsearch.search.R
-import com.example.jobsearch.search.databinding.ItemVacancyBinding
-import com.example.jobsearch.search.presentation.uimodel.Vacancy
+import com.example.jobsearch.core.R
+import com.example.jobsearch.core.databinding.ItemVacancyBinding
+import com.example.jobsearch.core.model.Vacancy
 
 open class VacancyAdapter(
     private val clickFavourite: (vacancy: Vacancy) -> Unit,
-    private val clickNotFavourite: (vacancy: Vacancy) -> Unit
+    private val clickNotFavourite: (vacancy: Vacancy) -> Unit,
+    private val clickVacancy: (vacancy: Vacancy) -> Unit
 ) : RecyclerView.Adapter<VacancyAdapter.VacancyViewHolder>() {
     var list: List<Vacancy> = listOf()
 
@@ -40,14 +41,25 @@ open class VacancyAdapter(
         lookingNumber(holder, vacancy)
         installFavourite(holder, vacancy)
         salaryShort(holder, vacancy)
+        setText(holder, vacancy)
+        changeFavourite(holder.binding, vacancy, position)
+        publishedDate(holder.binding, vacancy)
+        clickListenerVacancy(holder, vacancy)
+    }
+
+    private fun clickListenerVacancy(holder: VacancyViewHolder, vacancy: Vacancy) {
+        holder.binding.containerCardVacancy.setOnClickListener {
+            clickVacancy(vacancy)
+        }
+    }
+
+    private fun setText(holder: VacancyViewHolder, vacancy: Vacancy) {
         with(holder.binding) {
             titleVacancy.text = vacancy.title
             addressTown.text = vacancy.address.town
             company.text = vacancy.company
             experiencePreviewText.text = vacancy.experience.previewText
         }
-        changeFavourite(holder.binding, vacancy, position)
-        publishedDate(holder.binding, vacancy)
     }
 
     @SuppressLint("SetTextI18n")

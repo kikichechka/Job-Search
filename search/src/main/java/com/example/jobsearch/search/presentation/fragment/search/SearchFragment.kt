@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.jobsearch.core.model.Vacancy
 import com.example.jobsearch.search.R
 import com.example.jobsearch.search.databinding.FragmentSearchBinding
 import com.example.jobsearch.search.presentation.SearchViewModelsFactory
@@ -17,7 +18,6 @@ import com.example.jobsearch.search.presentation.adapter.RecommendationsAdapter
 import com.example.jobsearch.search.presentation.adapter.SearchVacancyAdapter
 import com.example.jobsearch.search.presentation.FavouriteVacancy
 import com.example.jobsearch.search.presentation.uimodel.ListVacancies
-import com.example.jobsearch.search.presentation.uimodel.Vacancy
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -69,7 +69,7 @@ class SearchFragment : Fragment() {
 
     private fun createVacancyAdapter() {
         vacancyAdapter = SearchVacancyAdapter(
-            countVacancies = "${resources.getString(R.string.still)} $countVacancies",
+            countVacancies = countVacancies,
             clickVacancy = { vacancy -> clickVacancyCallback(vacancy) },
             clickButtonAllVacancies = { clickButtonAllVacancies() },
             clickFavourite = { vacancy -> clickFavorite(vacancy) },
@@ -100,6 +100,7 @@ class SearchFragment : Fragment() {
                 if (it.isNotEmpty()) {
                     val partList = it.subList(FROM_INDEX, TO_INDEX)
                     vacancyAdapter.changeData(partList)
+                    vacancyAdapter.changeCountVacancies(countVacancies)
                 }
 
                 binding.recyclerVacanciesForYou.adapter = vacancyAdapter
