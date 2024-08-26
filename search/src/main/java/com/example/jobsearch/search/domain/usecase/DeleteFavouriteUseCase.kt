@@ -1,4 +1,4 @@
-package com.example.jobsearch.search.domain
+package com.example.jobsearch.search.domain.usecase
 
 import com.example.jobsearch.search.domain.model.Vacancy
 

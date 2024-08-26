@@ -1,4 +1,4 @@
-package com.example.jobsearch.search.domain
+package com.example.jobsearch.search.domain.repository
 
 import com.example.jobsearch.search.domain.model.AllData
 import com.example.jobsearch.search.domain.model.Vacancy

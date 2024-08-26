@@ -36,7 +36,9 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_vacanciesComplianceFragment"
-            app:destination="@id/vacanciesComplianceFragment" />
+            app:destination="@id/vacanciesComplianceFragment"
+            app:popUpTo="@id/searchFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -60,6 +62,13 @@
         android:id="@+id/vacanciesComplianceFragment"
         android:name="com.example.jobsearch.search.presentation.fragment.compliance.VacanciesComplianceFragment"
         android:label="VacanciesComplianceFragment"
-        tools:layout="@layout/fragment_vacancies_compliance"/>
+        tools:layout="@layout/fragment_vacancies_compliance">
+        <action
+            android:id="@+id/action_vacanciesComplianceFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:popUpTo="@id/vacanciesComplianceFragment"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
 
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.jobsearch.search.presentation.fragment.search
+package com.example.jobsearch.search.presentation.fragment.compliance
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,6 @@ import com.example.jobsearch.search.domain.usecase.AddFavouriteUseCase
 import com.example.jobsearch.search.domain.usecase.DeleteFavouriteUseCase
 import com.example.jobsearch.search.domain.usecase.GetCountFavouriteUseCase
 import com.example.jobsearch.search.domain.usecase.GetDataUseCase
-import com.example.jobsearch.search.presentation.uimodel.Offer
 import com.example.jobsearch.search.presentation.uimodel.Vacancy
 import com.example.jobsearch.search.presentation.uimodel.mapToDomain
 import com.example.jobsearch.search.presentation.uimodel.mapToUi
@@ -15,15 +14,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SearchViewModel @Inject constructor(
+class VacanciesComplianceViewModel @Inject constructor(
     private val getDataUseCase: GetDataUseCase,
     private val getCountFavouriteUseCase: GetCountFavouriteUseCase,
     private val deleteFavouriteUseCase: DeleteFavouriteUseCase,
     private val addFavouriteUseCase: AddFavouriteUseCase
-): ViewModel() {
-    private val _offers = MutableStateFlow(listOf<Offer>())
-    val offers = _offers.asStateFlow()
-
+) : ViewModel() {
     private val _vacancy = MutableStateFlow(listOf<Vacancy>())
     val vacancy = _vacancy.asStateFlow()
 
@@ -32,11 +28,8 @@ class SearchViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            getCountFavourite()
-        }
-        viewModelScope.launch {
+            _favoriteVacancy.value = getCountFavouriteUseCase.get()
             getDataUseCase.get()?.mapToUi()?.let {
-                _offers.value = it.offers
                 _vacancy.value = it.vacancies
             }
         }

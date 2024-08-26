@@ -1,5 +1,6 @@
-package com.example.jobsearch.search.domain
+package com.example.jobsearch.search.domain.usecase
 
+import com.example.jobsearch.search.domain.repository.DataRepository
 import javax.inject.Inject
 
 class GetCountFavouriteUseCaseImpl @Inject constructor(

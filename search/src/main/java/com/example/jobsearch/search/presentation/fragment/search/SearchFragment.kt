@@ -37,6 +37,7 @@ class SearchFragment : Fragment() {
     private lateinit var vacancyAdapter: SearchVacancyAdapter
     private var allListVacancies = listOf<Vacancy>()
     private var countVacancies: String = ""
+    private lateinit var recommendationsAdapter: RecommendationsAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -52,7 +53,6 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel.loadData()
         _binding = FragmentSearchBinding.inflate(inflater)
         return binding.root
     }
@@ -60,37 +60,45 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recommendationsAdapter =
+        createRecommendationsAdapter()
+        createVacancyAdapter()
+        subscribeOffers()
+        subscribeAllVacancy()
+        subscribeCountFavouriteVacancy()
+    }
+
+    private fun createVacancyAdapter() {
+        vacancyAdapter = SearchVacancyAdapter(
+            countVacancies = "${resources.getString(R.string.still)} $countVacancies",
+            clickVacancy = { vacancy -> clickVacancyCallback(vacancy) },
+            clickButtonAllVacancies = { clickButtonAllVacancies() },
+            clickFavourite = { vacancy -> clickFavorite(vacancy) },
+            clickNotFavourite = { vacancy -> clickNotFavorite(vacancy) }
+        )
+    }
+
+    private fun createRecommendationsAdapter() {
+        recommendationsAdapter =
             RecommendationsAdapter(click = { uri -> clickOfferCallback(uri) })
         binding.recyclerRecommendations.adapter = recommendationsAdapter
+    }
 
-
+    private fun subscribeOffers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.offers.collect {
                 recommendationsAdapter.changeData(it)
             }
         }
+    }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.favoriteVacancy.collect {
-                favouriteVacancy.countFavourite(it)
-            }
-        }
-
-        vacancyAdapter = SearchVacancyAdapter(
-            countVacancies = "${resources.getString(R.string.still)} $countVacancies",
-            clickVacancy = { vacancy -> clickVacancyCallback(vacancy) },
-            clickButtonAllVacancies = { clickAllVacancies() },
-            clickFavourite = { vacancy -> clickFavorite(vacancy) },
-            clickNotFavourite = { vacancy -> clickNotFavorite(vacancy) }
-        )
-
+    private fun subscribeAllVacancy() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.vacancy.collect {
                 allListVacancies = it
-                countVacancies = resources.getQuantityString(R.plurals.count_vacancies, it.size, it.size)
+                countVacancies =
+                    resources.getQuantityString(R.plurals.count_vacancies, it.size, it.size)
                 if (it.isNotEmpty()) {
-                    val partList = it.subList(0, 3)
+                    val partList = it.subList(FROM_INDEX, TO_INDEX)
                     vacancyAdapter.changeData(partList)
                 }
 
@@ -99,7 +107,15 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun clickAllVacancies() {
+    private fun subscribeCountFavouriteVacancy() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.favoriteVacancy.collect {
+                favouriteVacancy.countFavourite(it)
+            }
+        }
+    }
+
+    private fun clickButtonAllVacancies() {
         clickAllVacancies.click(ListVacancies(allListVacancies))
     }
 
@@ -128,5 +144,10 @@ class SearchFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    companion object {
+        private const val FROM_INDEX = 0
+        private const val TO_INDEX = 3
     }
 }

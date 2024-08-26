@@ -11,7 +11,7 @@ import com.example.jobsearch.input.CallbackChecking
 import com.example.jobsearch.input.CallbackLog
 import com.example.jobsearch.input.fragment.CheckingAccountFragment
 import com.example.jobsearch.search.presentation.FavouriteVacancy
-import com.example.jobsearch.search.presentation.fragment.compliance.VacanciesComplianceFragment
+import com.example.jobsearch.search.presentation.fragment.compliance.FoundInSearchFragment
 import com.example.jobsearch.search.presentation.fragment.search.ClickAllVacancies
 import com.example.jobsearch.search.presentation.uimodel.ListVacancies
 import com.google.android.material.badge.BadgeDrawable
@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), CallbackLog,
-    CallbackChecking, ClickAllVacancies, FavouriteVacancy {
+    CallbackChecking, ClickAllVacancies, FavouriteVacancy, FoundInSearchFragment {
     private var _binding: ActivityMainBinding? = null
     private val binding: ActivityMainBinding
         get() = _binding!!
@@ -59,21 +59,15 @@ class MainActivity : AppCompatActivity(), CallbackLog,
         bottomNavigationView.menu.forEach { it.isEnabled = true }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
     override fun click(listVacancies: ListVacancies) {
-        val bundle = Bundle().apply {
-            putParcelable(VacanciesComplianceFragment.KEY_PARAM, listVacancies)
-        }
-        navController.navigate(R.id.action_searchFragment_to_vacanciesComplianceFragment, bundle)
+        navController.navigate(R.id.action_searchFragment_to_vacanciesComplianceFragment)
     }
 
     override fun countFavourite(number: Int) {
-        badge.number = number
-        checkBadge()
+        if (badge.number != number) {
+            badge.number = number
+            checkBadge()
+        }
     }
 
     private fun checkBadge() {
@@ -83,5 +77,14 @@ class MainActivity : AppCompatActivity(), CallbackLog,
         if (badge.number == 0 && badge.isVisible) {
             badge.isVisible = false
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    override fun clickFound() {
+        navController.navigate(R.id.action_vacanciesComplianceFragment_to_searchFragment)
     }
 }
