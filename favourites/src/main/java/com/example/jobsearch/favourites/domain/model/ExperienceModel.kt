@@ -1,6 +1,6 @@
 package com.example.jobsearch.favourites.domain.model
 
-class Experience(
+class ExperienceModel(
     val previewText: String,
     val text: String
 )

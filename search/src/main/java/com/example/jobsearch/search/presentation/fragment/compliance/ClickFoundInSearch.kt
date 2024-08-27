@@ -1,5 +1,5 @@
 package com.example.jobsearch.search.presentation.fragment.compliance
 
-interface FoundInSearchFragment {
+interface ClickFoundInSearch {
     fun clickFound()
 }

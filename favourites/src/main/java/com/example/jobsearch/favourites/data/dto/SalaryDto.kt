@@ -1,15 +1,14 @@
 package com.example.jobsearch.favourites.data.dto
 
-import com.example.jobsearch.favourites.domain.model.Experience
-import com.example.jobsearch.favourites.domain.model.Salary
+import com.example.jobsearch.favourites.domain.model.SalaryModel
 
 class SalaryDto(
     val short: String?,
     val full: String
 )
 
-fun SalaryDto.mapToModel(): Salary {
-    return Salary(
+fun SalaryDto.mapToModel(): SalaryModel {
+    return SalaryModel(
         short = short,
         full = full
     )

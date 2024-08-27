@@ -15,9 +15,9 @@ import com.example.jobsearch.search.databinding.FragmentSearchBinding
 import com.example.jobsearch.search.presentation.SearchViewModelsFactory
 import com.example.jobsearch.search.presentation.adapter.RecommendationsAdapter
 import com.example.jobsearch.search.presentation.adapter.SearchVacancyAdapter
-import com.example.jobsearch.search.presentation.FavouriteVacancy
 import com.example.jobsearch.search.presentation.uimodel.ListVacancies
 import com.example.model.Vacancy
+import com.example.model.callback.ClickFavouriteVacancy
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -33,7 +33,7 @@ class SearchFragment : Fragment() {
     lateinit var searchViewModelsFactory: SearchViewModelsFactory
     private val viewModel: SearchViewModel by viewModels { searchViewModelsFactory }
     private lateinit var clickAllVacancies: ClickAllVacancies
-    private lateinit var favouriteVacancy: FavouriteVacancy
+    private lateinit var clickFavouriteVacancy: ClickFavouriteVacancy
     private lateinit var vacancyAdapter: SearchVacancyAdapter
     private var allListVacancies = listOf<Vacancy>()
     private var countVacancies: String = ""
@@ -43,7 +43,7 @@ class SearchFragment : Fragment() {
         super.onAttach(context)
         try {
             clickAllVacancies = context as ClickAllVacancies
-            favouriteVacancy = context as FavouriteVacancy
+            clickFavouriteVacancy = context as ClickFavouriteVacancy
         } catch (e: ClassCastException) {
             throw ClassCastException(e.message)
         }
@@ -59,12 +59,18 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        loadData()
         createRecommendationsAdapter()
         createVacancyAdapter()
         subscribeOffers()
         subscribeAllVacancy()
         subscribeCountFavouriteVacancy()
+    }
+
+    private fun loadData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.loadData()
+        }
     }
 
     private fun createVacancyAdapter() {
@@ -111,7 +117,7 @@ class SearchFragment : Fragment() {
     private fun subscribeCountFavouriteVacancy() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.favoriteVacancy.collect {
-                favouriteVacancy.countFavourite(it)
+                clickFavouriteVacancy.countFavourite(it)
             }
         }
     }
@@ -125,10 +131,7 @@ class SearchFragment : Fragment() {
         startActivity(browserIntent)
     }
 
-    private fun clickVacancyCallback(vacancy: Vacancy) {
-
-
-    }
+    private fun clickVacancyCallback(vacancy: Vacancy) {}
 
     private fun clickFavorite(vacancy: Vacancy) {
         viewLifecycleOwner.lifecycleScope.launch {

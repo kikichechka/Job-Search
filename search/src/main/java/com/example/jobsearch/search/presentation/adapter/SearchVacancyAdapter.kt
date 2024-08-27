@@ -12,7 +12,11 @@ class SearchVacancyAdapter(
     clickVacancy: (vacancy: Vacancy) -> Unit,
     clickFavourite: (vacancy: Vacancy) -> Unit,
     clickNotFavourite: (vacancy: Vacancy) -> Unit
-) : VacancyAdapter(clickFavourite = clickFavourite, clickNotFavourite = clickNotFavourite, clickVacancy = clickVacancy) {
+) : VacancyAdapter(
+    clickFavourite = clickFavourite,
+    clickNotFavourite = clickNotFavourite,
+    clickVacancy = clickVacancy
+) {
 
     override fun onBindViewHolder(holder: VacancyViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
@@ -21,7 +25,7 @@ class SearchVacancyAdapter(
 
     fun changeCountVacancies(countVacancies: String) {
         this.countVacancies = countVacancies
-        notifyItemChanged(list.size-1)
+        notifyItemChanged(list.size - 1)
     }
 
     @SuppressLint("SetTextI18n")

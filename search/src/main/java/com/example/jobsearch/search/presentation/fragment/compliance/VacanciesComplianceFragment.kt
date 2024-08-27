@@ -11,10 +11,10 @@ import androidx.lifecycle.lifecycleScope
 import com.example.jobsearch.search.R
 import com.example.jobsearch.search.databinding.FragmentVacanciesComplianceBinding
 import com.example.jobsearch.search.presentation.adapter.VacanciesComplianceAdapter
-import com.example.jobsearch.search.presentation.FavouriteVacancy
 import com.example.jobsearch.search.presentation.SearchViewModelsFactory
 import com.example.jobsearch.search.presentation.fragment.search.ClickAllVacancies
 import com.example.model.Vacancy
+import com.example.model.callback.ClickFavouriteVacancy
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,15 +30,15 @@ class VacanciesComplianceFragment : Fragment() {
     lateinit var searchViewModelsFactory: SearchViewModelsFactory
     private val viewModel: VacanciesComplianceViewModel by viewModels { searchViewModelsFactory }
     private lateinit var clickAllVacancies: ClickAllVacancies
-    private lateinit var favouriteVacancy: FavouriteVacancy
-    private lateinit var foundInSearchFragment: FoundInSearchFragment
+    private lateinit var clickFavouriteVacancy: ClickFavouriteVacancy
+    private lateinit var clickFoundInSearch: ClickFoundInSearch
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
             clickAllVacancies = context as ClickAllVacancies
-            favouriteVacancy = context as FavouriteVacancy
-            foundInSearchFragment = context as FoundInSearchFragment
+            clickFavouriteVacancy = context as ClickFavouriteVacancy
+            clickFoundInSearch = context as ClickFoundInSearch
         } catch (e: ClassCastException) {
             throw ClassCastException(e.message)
         }
@@ -54,16 +54,22 @@ class VacanciesComplianceFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        loadData()
         createVacanciesComplianceAdapter()
         subscribeAllVacancy()
         buttonClickListener()
         subscribeCountFavouriteVacancy()
     }
 
+    private fun loadData() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.loadData()
+        }
+    }
+
     private fun buttonClickListener() {
         binding.buttonBack.setOnClickListener {
-            foundInSearchFragment.clickFound()
+            clickFoundInSearch.clickFound()
         }
     }
 
@@ -93,7 +99,7 @@ class VacanciesComplianceFragment : Fragment() {
     private fun subscribeCountFavouriteVacancy() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.favoriteVacancy.collect {
-                favouriteVacancy.countFavourite(it)
+                clickFavouriteVacancy.countFavourite(it)
             }
         }
     }

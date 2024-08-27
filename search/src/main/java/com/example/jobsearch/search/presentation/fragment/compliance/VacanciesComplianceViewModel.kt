@@ -26,7 +26,7 @@ class VacanciesComplianceViewModel @Inject constructor(
     private val _favoriteVacancy = MutableStateFlow(0)
     val favoriteVacancy = _favoriteVacancy.asStateFlow()
 
-    init {
+    suspend fun loadData() {
         viewModelScope.launch {
             _favoriteVacancy.value = getCountFavouriteUseCase.get()
             getDataUseCase.get()?.mapToUi()?.let {
@@ -48,6 +48,7 @@ class VacanciesComplianceViewModel @Inject constructor(
     }
 
     suspend fun addInFavoritesVacancy(vacancy: Vacancy) {
+        vacancy.isFavorite = true
         addFavouriteUseCase.add(vacancy.mapToDomain())
         _vacancy.value.map { if (it.id == vacancy.id) it.isFavorite = true }
         getCountFavourite()

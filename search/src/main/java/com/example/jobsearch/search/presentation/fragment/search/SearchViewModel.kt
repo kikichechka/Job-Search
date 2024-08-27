@@ -1,7 +1,6 @@
 package com.example.jobsearch.search.presentation.fragment.search
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.jobsearch.search.domain.model.AddressModel
 import com.example.jobsearch.search.domain.model.ExperienceModel
 import com.example.jobsearch.search.domain.model.SalaryModel
@@ -17,8 +16,9 @@ import com.example.model.Experience
 import com.example.model.Salary
 import com.example.model.Vacancy
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
@@ -26,7 +26,7 @@ class SearchViewModel @Inject constructor(
     private val getCountFavouriteUseCase: GetCountFavouriteUseCase,
     private val deleteFavouriteUseCase: DeleteFavouriteUseCase,
     private val addFavouriteUseCase: AddFavouriteUseCase
-): ViewModel() {
+) : ViewModel() {
     private val _offers = MutableStateFlow(listOf<Offer>())
     val offers = _offers.asStateFlow()
 
@@ -36,15 +36,15 @@ class SearchViewModel @Inject constructor(
     private val _favoriteVacancy = MutableStateFlow(0)
     val favoriteVacancy = _favoriteVacancy.asStateFlow()
 
-    init {
-        viewModelScope.launch {
-            getCountFavourite()
-        }
-        viewModelScope.launch {
-            getDataUseCase.get()?.mapToUi()?.let {
-                _offers.value = it.offers
-                _vacancyModel.value = it.vacancies
-            }
+    suspend fun loadData() {
+        loadVacancies()
+        getCountFavourite()
+    }
+
+    private suspend fun loadVacancies() {
+        getDataUseCase.get()?.mapToUi()?.let {
+            _offers.value = it.offers
+            _vacancyModel.value = it.vacancies
         }
     }
 
@@ -61,6 +61,7 @@ class SearchViewModel @Inject constructor(
     }
 
     suspend fun addInFavoritesVacancy(vacancy: Vacancy) {
+        vacancy.isFavorite = true
         addFavouriteUseCase.add(vacancy.mapToDomain())
         _vacancyModel.value.map { if (it.id == vacancy.id) it.isFavorite = true }
         getCountFavourite()

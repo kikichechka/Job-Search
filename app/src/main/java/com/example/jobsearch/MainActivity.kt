@@ -10,17 +10,17 @@ import com.example.jobsearch.databinding.ActivityMainBinding
 import com.example.jobsearch.input.CallbackChecking
 import com.example.jobsearch.input.CallbackLog
 import com.example.jobsearch.input.fragment.CheckingAccountFragment
-import com.example.jobsearch.search.presentation.FavouriteVacancy
-import com.example.jobsearch.search.presentation.fragment.compliance.FoundInSearchFragment
+import com.example.jobsearch.search.presentation.fragment.compliance.ClickFoundInSearch
 import com.example.jobsearch.search.presentation.fragment.search.ClickAllVacancies
 import com.example.jobsearch.search.presentation.uimodel.ListVacancies
+import com.example.model.callback.ClickFavouriteVacancy
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), CallbackLog,
-    CallbackChecking, ClickAllVacancies, FavouriteVacancy, FoundInSearchFragment {
+    CallbackChecking, ClickAllVacancies, ClickFavouriteVacancy, ClickFoundInSearch {
     private var _binding: ActivityMainBinding? = null
     private val binding: ActivityMainBinding
         get() = _binding!!

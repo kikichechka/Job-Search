@@ -1,13 +1,13 @@
 package com.example.jobsearch.favourites.domain.usecase
 
-import com.example.jobsearch.favourites.domain.repository.GetFavouriteRepository
-import com.example.jobsearch.favourites.domain.model.Vacancy
+import com.example.jobsearch.favourites.domain.repository.FavouriteRepository
+import com.example.jobsearch.favourites.domain.model.VacancyModel
 import javax.inject.Inject
 
 class GetFavouriteUseCaseImpl @Inject constructor(
-    private val getFavouriteRepository: GetFavouriteRepository
+    private val favouriteRepository: FavouriteRepository
 ): GetFavouriteUseCase {
-    override fun getData(): List<Vacancy> {
-        return getFavouriteRepository.get()
+    override suspend fun getData(): List<VacancyModel> {
+        return favouriteRepository.get()
     }
 }

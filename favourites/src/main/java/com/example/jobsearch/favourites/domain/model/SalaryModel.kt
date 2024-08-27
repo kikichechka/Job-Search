@@ -1,6 +1,6 @@
 package com.example.jobsearch.favourites.domain.model
 
-class Salary(
+class SalaryModel(
     val short: String?,
     val full: String
 )

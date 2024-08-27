@@ -4,4 +4,6 @@
     <color name="light_grey">#9F9F9F</color>
     <color name="basic_grey">#858688</color>
     <color name="special_blue">#2B7EFE</color>
+    <color name="black">#FF000000</color>
+
 </resources>

@@ -1,13 +1,13 @@
 package com.example.jobsearch.favourites.domain.usecase
 
-import com.example.jobsearch.favourites.domain.repository.GetFavouriteRepository
-import com.example.jobsearch.favourites.domain.model.Vacancy
+import com.example.jobsearch.favourites.domain.repository.FavouriteRepository
+import com.example.jobsearch.favourites.domain.model.VacancyModel
 import javax.inject.Inject
 
 class DeleteFavouriteUseCaseImpl@Inject constructor(
-    private val getFavouriteRepository: GetFavouriteRepository
+    private val favouriteRepository: FavouriteRepository
 ): DeleteFavouriteUseCase {
-    override fun deleteData(vacancy: Vacancy) {
-        getFavouriteRepository.delete(vacancy)
+    override suspend fun deleteData(vacancyModel: VacancyModel) {
+        favouriteRepository.delete(vacancyModel)
     }
 }

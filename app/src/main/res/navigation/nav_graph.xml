@@ -38,7 +38,7 @@
             android:id="@+id/action_searchFragment_to_vacanciesComplianceFragment"
             app:destination="@id/vacanciesComplianceFragment"
             app:popUpTo="@id/searchFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment

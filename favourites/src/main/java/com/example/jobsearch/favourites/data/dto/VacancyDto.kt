@@ -1,20 +1,25 @@
 package com.example.jobsearch.favourites.data.dto
 
-import com.example.jobsearch.favourites.domain.model.Address
-import com.example.jobsearch.favourites.domain.model.Experience
-import com.example.jobsearch.favourites.domain.model.Salary
-import com.example.jobsearch.favourites.domain.model.Vacancy
+import com.example.database.model.AddressDb
+import com.example.database.model.ExperienceDb
+import com.example.database.model.SalaryDb
+import com.example.database.model.VacancyDatabase
+import com.example.database.model.VacancyInfoDb
+import com.example.jobsearch.favourites.domain.model.AddressModel
+import com.example.jobsearch.favourites.domain.model.ExperienceModel
+import com.example.jobsearch.favourites.domain.model.SalaryModel
+import com.example.jobsearch.favourites.domain.model.VacancyModel
 
 class VacancyDto(
     val id: String,
     val lookingNumber: Int?,
     val title: String,
-    val address: Address,
+    val address: AddressDto,
     val company: String,
-    val experience: Experience,
+    val experience: ExperienceDto,
     val publishedDate: String,
     var isFavorite: Boolean,
-    val salary: Salary,
+    val salary: SalaryDto,
     val schedules: List<String>,
     val appliedNumber: Int?,
     val description: String?,
@@ -22,21 +27,113 @@ class VacancyDto(
     val questions: List<String>,
 )
 
-fun VacancyDto.mapToModel(): Vacancy {
-    return Vacancy(
+fun VacancyDto.mapToModel(): VacancyModel {
+    return VacancyModel(
         id = id,
         lookingNumber = lookingNumber,
         title = title,
-        address = address,
+        addressModel = address.mapToModel(),
         company = company,
-        experience = experience,
+        experience = experience.mapToModel(),
         publishedDate = publishedDate,
         isFavorite = isFavorite,
-        salary = salary,
+        salaryModel = salary.mapToModel(),
         schedules = schedules,
         appliedNumber = appliedNumber,
         description = description,
         responsibilities = responsibilities,
         questions = questions
+    )
+}
+
+fun VacancyDto.mapToDb(): VacancyDatabase {
+    return VacancyDatabase(
+        VacancyInfoDb(
+            id = id,
+            lookingNumber = lookingNumber,
+            title = title,
+            company = company,
+            publishedDate = publishedDate,
+            isFavorite = isFavorite,
+            schedules = schedules,
+            appliedNumber = appliedNumber,
+            description = description,
+            responsibilities = responsibilities,
+            questions = questions
+        ),
+        address = AddressDb(
+            vacancyId = id,
+            town = address.town,
+            street = address.street,
+            house = address.house
+        ),
+        experience = ExperienceDb(
+            vacancyId = id,
+            previewText = experience.previewText,
+            text = experience.text
+        ),
+        salary = SalaryDb(
+            vacancyId = id,
+            short = salary.short,
+            full = salary.full
+        )
+    )
+}
+
+fun VacancyDatabase.mapToDto(): VacancyDto {
+    return VacancyDto(
+        id = vacancyInfoDb.id,
+        lookingNumber = vacancyInfoDb.lookingNumber,
+        title = vacancyInfoDb.title,
+        company = vacancyInfoDb.company,
+        publishedDate = vacancyInfoDb.publishedDate,
+        isFavorite = vacancyInfoDb.isFavorite,
+        schedules = vacancyInfoDb.schedules,
+        appliedNumber = vacancyInfoDb.appliedNumber,
+        description = vacancyInfoDb.description,
+        responsibilities = vacancyInfoDb.responsibilities,
+        questions = vacancyInfoDb.questions,
+        address = AddressDto(
+            town = address.town,
+            street = address.street,
+            house = address.house
+        ),
+        experience = ExperienceDto(
+            previewText = experience.previewText,
+            text = experience.text
+        ),
+        salary = SalaryDto(
+            short = salary.short,
+            full = salary.full
+        )
+    )
+}
+
+fun VacancyDatabase.mapToModel(): VacancyModel {
+    return VacancyModel(
+        id = vacancyInfoDb.id,
+        lookingNumber = vacancyInfoDb.lookingNumber,
+        title = vacancyInfoDb.title,
+        company = vacancyInfoDb.company,
+        publishedDate = vacancyInfoDb.publishedDate,
+        isFavorite = vacancyInfoDb.isFavorite,
+        schedules = vacancyInfoDb.schedules,
+        appliedNumber = vacancyInfoDb.appliedNumber,
+        description = vacancyInfoDb.description,
+        responsibilities = vacancyInfoDb.responsibilities,
+        questions = vacancyInfoDb.questions,
+        addressModel = AddressModel(
+            town = address.town,
+            street = address.street,
+            house = address.house
+        ),
+        experience = ExperienceModel(
+            previewText = experience.previewText,
+            text = experience.text
+        ),
+        salaryModel = SalaryModel(
+            short = salary.short,
+            full = salary.full
+        )
     )
 }

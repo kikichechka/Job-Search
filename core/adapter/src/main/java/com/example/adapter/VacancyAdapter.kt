@@ -16,7 +16,7 @@ open class VacancyAdapter(
     var list: List<Vacancy> = listOf()
 
     @SuppressLint("NotifyDataSetChanged")
-    open fun changeData(newList: List<Vacancy>) {
+    fun changeData(newList: List<Vacancy>) {
         list = newList
         notifyDataSetChanged()
     }

@@ -1,7 +1,7 @@
 package com.example.jobsearch.favourites.domain.usecase
 
-import com.example.jobsearch.favourites.domain.model.Vacancy
+import com.example.jobsearch.favourites.domain.model.VacancyModel
 
 interface DeleteFavouriteUseCase {
-    fun deleteData(vacancy: Vacancy)
+    suspend fun deleteData(vacancyModel: VacancyModel)
 }
