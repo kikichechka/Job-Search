@@ -2,16 +2,20 @@ package com.example.jobsearch.search.presentation.fragment.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jobsearch.core.model.Vacancy
-import com.example.jobsearch.search.domain.model.Address
-import com.example.jobsearch.search.domain.model.Experience
-import com.example.jobsearch.search.domain.model.Salary
+import com.example.jobsearch.search.domain.model.AddressModel
+import com.example.jobsearch.search.domain.model.ExperienceModel
+import com.example.jobsearch.search.domain.model.SalaryModel
+import com.example.jobsearch.search.domain.model.VacancyModel
 import com.example.jobsearch.search.domain.usecase.AddFavouriteUseCase
 import com.example.jobsearch.search.domain.usecase.DeleteFavouriteUseCase
 import com.example.jobsearch.search.domain.usecase.GetCountFavouriteUseCase
 import com.example.jobsearch.search.domain.usecase.GetDataUseCase
 import com.example.jobsearch.search.presentation.uimodel.Offer
 import com.example.jobsearch.search.presentation.uimodel.mapToUi
+import com.example.model.Address
+import com.example.model.Experience
+import com.example.model.Salary
+import com.example.model.Vacancy
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -26,8 +30,8 @@ class SearchViewModel @Inject constructor(
     private val _offers = MutableStateFlow(listOf<Offer>())
     val offers = _offers.asStateFlow()
 
-    private val _vacancy = MutableStateFlow(listOf<Vacancy>())
-    val vacancy = _vacancy.asStateFlow()
+    private val _vacancyModel = MutableStateFlow(listOf<Vacancy>())
+    val vacancy = _vacancyModel.asStateFlow()
 
     private val _favoriteVacancy = MutableStateFlow(0)
     val favoriteVacancy = _favoriteVacancy.asStateFlow()
@@ -39,7 +43,7 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launch {
             getDataUseCase.get()?.mapToUi()?.let {
                 _offers.value = it.offers
-                _vacancy.value = it.vacancies
+                _vacancyModel.value = it.vacancies
             }
         }
     }
@@ -52,50 +56,50 @@ class SearchViewModel @Inject constructor(
 
     suspend fun removeFromFavoritesVacancy(vacancy: Vacancy) {
         deleteFavouriteUseCase.delete(vacancy.mapToDomain())
-        _vacancy.value.map { if (it.id == vacancy.id) it.isFavorite = false }
+        _vacancyModel.value.map { if (it.id == vacancy.id) it.isFavorite = false }
         getCountFavourite()
     }
 
     suspend fun addInFavoritesVacancy(vacancy: Vacancy) {
         addFavouriteUseCase.add(vacancy.mapToDomain())
-        _vacancy.value.map { if (it.id == vacancy.id) it.isFavorite = true }
+        _vacancyModel.value.map { if (it.id == vacancy.id) it.isFavorite = true }
         getCountFavourite()
     }
 }
 
-fun Address.mapToUi(): com.example.jobsearch.core.model.Address {
-    return com.example.jobsearch.core.model.Address(
+fun AddressModel.mapToUi(): Address {
+    return Address(
         town = town,
         street = street,
         house = house
     )
 }
 
-fun Experience.mapToUi(): com.example.jobsearch.core.model.Experience {
-    return com.example.jobsearch.core.model.Experience(
+fun ExperienceModel.mapToUi(): Experience {
+    return Experience(
         previewText = previewText,
         text = text
     )
 }
 
-fun Salary.mapToUi(): com.example.jobsearch.core.model.Salary {
-    return com.example.jobsearch.core.model.Salary(
+fun SalaryModel.mapToUi(): Salary {
+    return Salary(
         short = short,
         full = full
     )
 }
 
-fun com.example.jobsearch.search.domain.model.Vacancy.mapToUi(): Vacancy {
+fun VacancyModel.mapToUi(): Vacancy {
     return Vacancy(
         id = id,
         lookingNumber = lookingNumber,
         title = title,
-        address = address.mapToUi(),
+        address = addressModel.mapToUi(),
         company = company,
-        experience = experience.mapToUi(),
+        experience = experienceModel.mapToUi(),
         publishedDate = publishedDate,
         isFavorite = isFavorite,
-        salary = salary.mapToUi(),
+        salary = salaryModel.mapToUi(),
         schedules = schedules,
         appliedNumber = appliedNumber,
         description = description,
@@ -104,24 +108,24 @@ fun com.example.jobsearch.search.domain.model.Vacancy.mapToUi(): Vacancy {
     )
 }
 
-fun Vacancy.mapToDomain(): com.example.jobsearch.search.domain.model.Vacancy {
-    return com.example.jobsearch.search.domain.model.Vacancy(
+fun Vacancy.mapToDomain(): VacancyModel {
+    return VacancyModel(
         id = id,
         lookingNumber = lookingNumber,
         title = title,
-        address = Address(
+        addressModel = AddressModel(
             town = address.town,
             street = address.street,
             house = address.street
         ),
         company = company,
-        experience = Experience(
+        experienceModel = ExperienceModel(
             previewText = experience.previewText,
             text = experience.text
         ),
         publishedDate = publishedDate,
         isFavorite = isFavorite,
-        salary = Salary(
+        salaryModel = SalaryModel(
             short = salary.short,
             full = salary.full
         ),

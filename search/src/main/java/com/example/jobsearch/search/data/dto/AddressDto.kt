@@ -1,9 +1,8 @@
 package com.example.jobsearch.search.data.dto
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import com.example.jobsearch.search.domain.model.Address
+import com.example.database.model.AddressDb
+import com.example.jobsearch.search.domain.model.AddressModel
+import com.example.network.dto.AddressRemote
 
 data class AddressDto(
     val town: String,
@@ -11,15 +10,23 @@ data class AddressDto(
     val house: String
 )
 
-fun AddressDto.mapToModel(): Address {
-    return Address(
+fun AddressDto.mapToModel(): AddressModel {
+    return AddressModel(
         town = town,
         street = street,
         house = house
     )
 }
 
-fun Address.mapToDto(): AddressDto {
+fun AddressModel.mapToDto(): AddressDto {
+    return AddressDto(
+        town = town,
+        street = street,
+        house = house
+    )
+}
+
+fun AddressRemote.mapToDto(): AddressDto {
     return AddressDto(
         town = town,
         street = street,

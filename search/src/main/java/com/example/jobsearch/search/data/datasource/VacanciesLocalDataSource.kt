@@ -1,8 +1,7 @@
 package com.example.jobsearch.search.data.datasource
 
-import com.example.jobsearch.search.data.db.VacancyDao
-import com.example.jobsearch.search.data.db.model.VacancyDatabase
-import kotlinx.coroutines.delay
+import com.example.database.VacancyDao
+import com.example.database.model.VacancyDatabase
 import javax.inject.Inject
 
 class VacanciesLocalDataSource @Inject constructor(

@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.jobsearch.core.model.Vacancy
 import com.example.jobsearch.search.R
 import com.example.jobsearch.search.databinding.FragmentSearchBinding
 import com.example.jobsearch.search.presentation.SearchViewModelsFactory
@@ -18,6 +17,7 @@ import com.example.jobsearch.search.presentation.adapter.RecommendationsAdapter
 import com.example.jobsearch.search.presentation.adapter.SearchVacancyAdapter
 import com.example.jobsearch.search.presentation.FavouriteVacancy
 import com.example.jobsearch.search.presentation.uimodel.ListVacancies
+import com.example.model.Vacancy
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

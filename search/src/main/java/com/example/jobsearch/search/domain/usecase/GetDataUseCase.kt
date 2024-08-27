@@ -1,7 +1,7 @@
 package com.example.jobsearch.search.domain.usecase
 
-import com.example.jobsearch.search.domain.model.AllData
+import com.example.jobsearch.search.domain.model.AllDataModel
 
 interface GetDataUseCase {
-    suspend fun get(): AllData?
+    suspend fun get(): AllDataModel?
 }

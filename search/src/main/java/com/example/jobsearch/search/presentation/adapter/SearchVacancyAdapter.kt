@@ -2,9 +2,9 @@ package com.example.jobsearch.search.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.view.View
-import com.example.jobsearch.core.R
-import com.example.jobsearch.core.model.Vacancy
-import com.example.jobsearch.core.adapter.VacancyAdapter
+import com.example.adapter.VacancyAdapter
+import com.example.jobsearch.search.R
+import com.example.model.Vacancy
 
 class SearchVacancyAdapter(
     private var countVacancies: String,

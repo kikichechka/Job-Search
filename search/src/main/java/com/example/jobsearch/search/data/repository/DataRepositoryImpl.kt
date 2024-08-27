@@ -2,22 +2,21 @@ package com.example.jobsearch.search.data.repository
 
 import com.example.jobsearch.search.data.datasource.OffersAndVacanciesRemoteDataSource
 import com.example.jobsearch.search.data.datasource.VacanciesLocalDataSource
-import com.example.jobsearch.search.data.db.model.mapToDto
 import com.example.jobsearch.search.data.dto.VacancyDto
 import com.example.jobsearch.search.data.dto.mapToDb
 import com.example.jobsearch.search.data.dto.mapToDto
 import com.example.jobsearch.search.data.dto.mapToModel
 import com.example.jobsearch.search.domain.repository.DataRepository
-import com.example.jobsearch.search.domain.model.AllData
-import com.example.jobsearch.search.domain.model.Vacancy
+import com.example.jobsearch.search.domain.model.AllDataModel
+import com.example.jobsearch.search.domain.model.VacancyModel
 import javax.inject.Inject
 
 class DataRepositoryImpl @Inject constructor(
     private val offersAndVacanciesRemoteDataSource: OffersAndVacanciesRemoteDataSource,
     private val vacanciesLocalDataSource: VacanciesLocalDataSource
 ) : DataRepository {
-    override suspend fun getAllData(): AllData? {
-        val allData = offersAndVacanciesRemoteDataSource.getData().body()
+    override suspend fun getAllData(): AllDataModel? {
+        val allData = offersAndVacanciesRemoteDataSource.getData()
         allData?.vacancies?.let { allVacancies ->
             val favouriteVacanciesInLocalDataSource =
                 addFavouriteVacanciesFromRemoteInLocal(allVacancies)
@@ -60,11 +59,11 @@ class DataRepositoryImpl @Inject constructor(
         return vacanciesLocalDataSource.getAllData().size
     }
 
-    override suspend fun deleteFavourite(vacancy: Vacancy) {
-        vacanciesLocalDataSource.deleteData(vacancy.mapToDto().mapToDb())
+    override suspend fun deleteFavourite(vacancyModel: VacancyModel) {
+        vacanciesLocalDataSource.deleteData(vacancyModel.mapToDto().mapToDb())
     }
 
-    override suspend fun addFavourite(vacancy: Vacancy) {
-        vacanciesLocalDataSource.insertData(vacancy.mapToDto().mapToDb())
+    override suspend fun addFavourite(vacancyModel: VacancyModel) {
+        vacanciesLocalDataSource.insertData(vacancyModel.mapToDto().mapToDb())
     }
 }

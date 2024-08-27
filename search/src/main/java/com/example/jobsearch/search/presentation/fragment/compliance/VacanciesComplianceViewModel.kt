@@ -2,13 +2,13 @@ package com.example.jobsearch.search.presentation.fragment.compliance
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jobsearch.core.model.Vacancy
 import com.example.jobsearch.search.domain.usecase.AddFavouriteUseCase
 import com.example.jobsearch.search.domain.usecase.DeleteFavouriteUseCase
 import com.example.jobsearch.search.domain.usecase.GetCountFavouriteUseCase
 import com.example.jobsearch.search.domain.usecase.GetDataUseCase
 import com.example.jobsearch.search.presentation.fragment.search.mapToDomain
 import com.example.jobsearch.search.presentation.uimodel.mapToUi
+import com.example.model.Vacancy
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

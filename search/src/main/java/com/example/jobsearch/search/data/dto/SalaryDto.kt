@@ -1,23 +1,30 @@
 package com.example.jobsearch.search.data.dto
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import com.example.jobsearch.search.domain.model.Salary
+import com.example.jobsearch.search.domain.model.AllDataModel
+import com.example.jobsearch.search.domain.model.SalaryModel
+import com.example.network.dto.AllDataRemote
+import com.example.network.dto.SalaryRemote
 
 data class SalaryDto(
     val short: String?,
     val full: String
 )
 
-fun SalaryDto.mapToModel(): Salary {
-    return Salary(
+fun SalaryDto.mapToModel(): SalaryModel {
+    return SalaryModel(
         short = short,
         full = full
     )
 }
 
-fun Salary.mapToDto(): SalaryDto {
+fun SalaryModel.mapToDto(): SalaryDto {
+    return SalaryDto(
+        short = short,
+        full = full
+    )
+}
+
+fun SalaryRemote.mapToDto(): SalaryDto {
     return SalaryDto(
         short = short,
         full = full

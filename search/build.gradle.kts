@@ -41,7 +41,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation(project(":core:adapter"))
+    implementation(project(":core:model"))
+    implementation(project(":core:database"))
+    implementation(project(":core:network"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -53,15 +56,8 @@ dependencies {
     implementation(libs.hilt)
     kapt(libs.hiltCompiler)
 
-    implementation(libs.gson)
-    implementation(libs.converter.gson)
-
     implementation(libs.fragment.ktx)
     implementation(libs.viewmodel.ktx)
-
-    implementation(libs.room.ktx)
-    implementation(libs.room.runtime)
-    kapt(libs.room.compiler)
 }
 
 kapt {

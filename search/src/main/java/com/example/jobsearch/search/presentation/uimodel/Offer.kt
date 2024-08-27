@@ -1,6 +1,6 @@
 package com.example.jobsearch.search.presentation.uimodel
 
-import com.example.jobsearch.search.domain.model.Offer
+import com.example.jobsearch.search.domain.model.OfferModel
 
 class Offer(
     val id: String?,
@@ -9,7 +9,7 @@ class Offer(
     val link: String
 )
 
-fun Offer.mapToUi(): com.example.jobsearch.search.presentation.uimodel.Offer {
+fun OfferModel.mapToUi(): com.example.jobsearch.search.presentation.uimodel.Offer {
     return Offer(
         id = id,
         title = title,

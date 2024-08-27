@@ -5,6 +5,7 @@
     <string name="vacancies_for_you">Вакансии для вас</string>
     <string name="position_for_suitable_vacancies">Должность по подходящим вакансиям</string>
     <string name="by_correspondence">По соответствию</string>
+    <string name="still">Еще</string>
 
 
     <plurals name="count_vacancies">
