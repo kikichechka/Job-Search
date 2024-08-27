@@ -7,20 +7,27 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.example.jobsearch.databinding.ActivityMainBinding
+import com.example.jobsearch.details.presenter.fragment.DetailsFragment
+import com.example.jobsearch.favourites.presenter.ClickVacancyFromFavourite
 import com.example.jobsearch.input.CallbackChecking
 import com.example.jobsearch.input.CallbackLog
 import com.example.jobsearch.input.fragment.CheckingAccountFragment
-import com.example.jobsearch.search.presentation.fragment.compliance.ClickFoundInSearch
+import com.example.jobsearch.search.presentation.fragment.compliance.ClickVacancyFromCompliance
+import com.example.jobsearch.search.presentation.fragment.compliance.VacanciesComplianceFragment
 import com.example.jobsearch.search.presentation.fragment.search.ClickAllVacancies
+import com.example.jobsearch.search.presentation.fragment.search.ClickVacancyFromSearch
 import com.example.jobsearch.search.presentation.uimodel.ListVacancies
+import com.example.model.Vacancy
 import com.example.model.callback.ClickFavouriteVacancy
+import com.example.model.callback.ClickFoundInSearch
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), CallbackLog,
-    CallbackChecking, ClickAllVacancies, ClickFavouriteVacancy, ClickFoundInSearch {
+    CallbackChecking, ClickAllVacancies, ClickFavouriteVacancy, ClickFoundInSearch,
+    ClickVacancyFromSearch, ClickVacancyFromCompliance, ClickVacancyFromFavourite {
     private var _binding: ActivityMainBinding? = null
     private val binding: ActivityMainBinding
         get() = _binding!!
@@ -79,12 +86,33 @@ class MainActivity : AppCompatActivity(), CallbackLog,
         }
     }
 
+    override fun clickFound() {
+        navController.popBackStack()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
 
-    override fun clickFound() {
-        navController.navigate(R.id.action_vacanciesComplianceFragment_to_searchFragment)
+    override fun clickVacancyFromSearch(vacancy: Vacancy) {
+        val bundle = Bundle().apply {
+            putParcelable(DetailsFragment.KEY_ARG, vacancy)
+        }
+        navController.navigate(R.id.action_searchFragment_to_detailsFragment, bundle)
+    }
+
+    override fun clickVacancyFromCompliance(vacancy: Vacancy) {
+        val bundle = Bundle().apply {
+            putParcelable(DetailsFragment.KEY_ARG, vacancy)
+        }
+        navController.navigate(R.id.action_vacanciesComplianceFragment_to_detailsFragment, bundle)
+    }
+
+    override fun clickVacancyFromFavourite(vacancy: Vacancy) {
+        val bundle = Bundle().apply {
+            putParcelable(DetailsFragment.KEY_ARG, vacancy)
+        }
+        navController.navigate(R.id.action_favouritesFragment_to_detailsFragment, bundle)
     }
 }

@@ -34,6 +34,7 @@ class SearchFragment : Fragment() {
     private val viewModel: SearchViewModel by viewModels { searchViewModelsFactory }
     private lateinit var clickAllVacancies: ClickAllVacancies
     private lateinit var clickFavouriteVacancy: ClickFavouriteVacancy
+    private lateinit var clickVacancyFromSearch: ClickVacancyFromSearch
     private lateinit var vacancyAdapter: SearchVacancyAdapter
     private var allListVacancies = listOf<Vacancy>()
     private var countVacancies: String = ""
@@ -42,6 +43,7 @@ class SearchFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
+            clickVacancyFromSearch = context as ClickVacancyFromSearch
             clickAllVacancies = context as ClickAllVacancies
             clickFavouriteVacancy = context as ClickFavouriteVacancy
         } catch (e: ClassCastException) {
@@ -76,7 +78,7 @@ class SearchFragment : Fragment() {
     private fun createVacancyAdapter() {
         vacancyAdapter = SearchVacancyAdapter(
             countVacancies = countVacancies,
-            clickVacancy = { vacancy -> clickVacancyCallback(vacancy) },
+            clickVacancy = { vacancy -> clickVacancyFromSearch.clickVacancyFromSearch(vacancy) },
             clickButtonAllVacancies = { clickButtonAllVacancies() },
             clickFavourite = { vacancy -> clickFavorite(vacancy) },
             clickNotFavourite = { vacancy -> clickNotFavorite(vacancy) }
@@ -130,8 +132,6 @@ class SearchFragment : Fragment() {
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
         startActivity(browserIntent)
     }
-
-    private fun clickVacancyCallback(vacancy: Vacancy) {}
 
     private fun clickFavorite(vacancy: Vacancy) {
         viewLifecycleOwner.lifecycleScope.launch {

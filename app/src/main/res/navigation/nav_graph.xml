@@ -39,13 +39,21 @@
             app:destination="@id/vacanciesComplianceFragment"
             app:popUpTo="@id/searchFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_searchFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/favouritesFragment"
         android:name="com.example.jobsearch.favourites.presenter.FavouritesFragment"
         android:label="FavouritesFragment"
-        tools:layout="@layout/fragment_favourites"/>
+        tools:layout="@layout/fragment_favourites">
+
+        <action
+            android:id="@+id/action_favouritesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/responsesFragment"
         android:name="com.example.jobsearch.responses.ResponsesFragment"
@@ -69,6 +77,18 @@
             app:popUpTo="@id/vacanciesComplianceFragment"
             app:popUpToInclusive="true"
             />
+        <action
+            android:id="@+id/action_vacanciesComplianceFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.jobsearch.details.presenter.fragment.DetailsFragment"
+        android:label="DetailsFragment" >
+        <argument
+            android:name="detailsArgs"
+            app:argType="com.example.model.Vacancy"/>
+    </fragment>
+
 
 </navigation>

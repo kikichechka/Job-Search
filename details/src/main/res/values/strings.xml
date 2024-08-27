@@ -1,0 +1,19 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="your_tasks">Ваши задачи</string>
+    <string name="ask_employer_question">Задайте вопрос работодателю</string>
+    <string name="he_will_receive_with_response_vacancy">Он получит его с откликом на вакансию</string>
+    <string name="respond">Откликнуться</string>
+
+    <plurals name="looking_number_peoples">
+        <item quantity="few">%1$d человека сейчас смотрят</item>
+        <item quantity="other">%1$d человек сейчас смотрят</item>
+    </plurals>
+
+    <plurals name="applied_number_peoples">
+        <item quantity="few">%1$d человека уже откликнулись</item>
+        <item quantity="other">%1$d человек уже откликнулось</item>
+    </plurals>
+
+</resources>

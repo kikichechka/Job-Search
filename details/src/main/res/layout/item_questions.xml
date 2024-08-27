@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="5dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/average_grey"
+        app:cardCornerRadius="50dp">
+
+    <TextView
+        android:id="@+id/text_questions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Где распологается место работы?"
+        android:padding="10dp"
+        style="@style/description_style"/>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

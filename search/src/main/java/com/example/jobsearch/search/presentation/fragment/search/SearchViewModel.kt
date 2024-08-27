@@ -37,8 +37,8 @@ class SearchViewModel @Inject constructor(
     val favoriteVacancy = _favoriteVacancy.asStateFlow()
 
     suspend fun loadData() {
-        loadVacancies()
         getCountFavourite()
+        loadVacancies()
     }
 
     private suspend fun loadVacancies() {

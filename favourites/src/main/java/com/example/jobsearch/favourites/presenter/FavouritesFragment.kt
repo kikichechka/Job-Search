@@ -22,6 +22,7 @@ class FavouritesFragment : Fragment() {
     private val binding: FragmentFavouritesBinding
         get() = _binding!!
     private lateinit var clickFavouriteVacancy: ClickFavouriteVacancy
+    private lateinit var clickVacancyFromFavourite: ClickVacancyFromFavourite
     private lateinit var favouriteVacanciesAdapter: FavouriteVacanciesAdapter
     private var numberFavouriteVacancies: Int = 0
     @Inject
@@ -31,6 +32,7 @@ class FavouritesFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
+            clickVacancyFromFavourite = context as ClickVacancyFromFavourite
             clickFavouriteVacancy = context as ClickFavouriteVacancy
         } catch (e: ClassCastException) {
             throw ClassCastException(e.message)
@@ -76,7 +78,7 @@ class FavouritesFragment : Fragment() {
 
     private fun createVacancyAdapter() {
         favouriteVacanciesAdapter = FavouriteVacanciesAdapter(
-            clickVacancy = { vacancy -> clickVacancyCallback(vacancy) },
+            clickVacancy = { vacancy -> clickVacancyFromFavourite.clickVacancyFromFavourite(vacancy)  },
             clickFavourite = { vacancy -> clickFavorite(vacancy) },
             clickNotFavourite = { vacancy -> clickNotFavorite(vacancy) }
         )
@@ -90,10 +92,6 @@ class FavouritesFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch{
             viewModel.deleteFavouriteVacancy(vacancy)
         }
-    }
-
-    private fun clickVacancyCallback(vacancy: Vacancy) {
-
     }
 
     override fun onDestroy() {

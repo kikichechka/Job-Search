@@ -15,6 +15,7 @@ import com.example.jobsearch.search.presentation.SearchViewModelsFactory
 import com.example.jobsearch.search.presentation.fragment.search.ClickAllVacancies
 import com.example.model.Vacancy
 import com.example.model.callback.ClickFavouriteVacancy
+import com.example.model.callback.ClickFoundInSearch
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -32,10 +33,12 @@ class VacanciesComplianceFragment : Fragment() {
     private lateinit var clickAllVacancies: ClickAllVacancies
     private lateinit var clickFavouriteVacancy: ClickFavouriteVacancy
     private lateinit var clickFoundInSearch: ClickFoundInSearch
+    private lateinit var clickVacancyFromCompliance: ClickVacancyFromCompliance
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
+            clickVacancyFromCompliance = context as ClickVacancyFromCompliance
             clickAllVacancies = context as ClickAllVacancies
             clickFavouriteVacancy = context as ClickFavouriteVacancy
             clickFoundInSearch = context as ClickFoundInSearch
@@ -117,7 +120,7 @@ class VacanciesComplianceFragment : Fragment() {
     }
 
     private fun clickVacancyCallback(vacancy: Vacancy) {
-
+        clickVacancyFromCompliance.clickVacancyFromCompliance(vacancy)
     }
 
     override fun onDestroy() {
