@@ -2,10 +2,6 @@ package com.example.jobsearch.favourites.presenter
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.jobsearch.favourites.data.dto.AddressDto
-import com.example.jobsearch.favourites.data.dto.ExperienceDto
-import com.example.jobsearch.favourites.data.dto.SalaryDto
-import com.example.jobsearch.favourites.data.dto.VacancyDto
 import com.example.jobsearch.favourites.domain.model.AddressModel
 import com.example.jobsearch.favourites.domain.model.ExperienceModel
 import com.example.jobsearch.favourites.domain.model.SalaryModel
@@ -48,14 +44,6 @@ fun AddressModel.mapToUi(): Address {
     )
 }
 
-fun AddressModel.mapToDto(): AddressDto {
-    return AddressDto(
-        town = town,
-        street = street,
-        house = house
-    )
-}
-
 fun ExperienceModel.mapToUi(): Experience {
     return Experience(
         previewText = previewText,
@@ -63,22 +51,8 @@ fun ExperienceModel.mapToUi(): Experience {
     )
 }
 
-fun ExperienceModel.mapToDto(): ExperienceDto {
-    return ExperienceDto(
-        previewText = previewText,
-        text = text
-    )
-}
-
 fun SalaryModel.mapToUi(): Salary {
     return Salary(
-        short = short,
-        full = full
-    )
-}
-
-fun SalaryModel.mapToDto(): SalaryDto {
-    return SalaryDto(
         short = short,
         full = full
     )
@@ -95,25 +69,6 @@ fun VacancyModel.mapToUi(): Vacancy {
         publishedDate = publishedDate,
         isFavorite = isFavorite,
         salary = salaryModel.mapToUi(),
-        schedules = schedules,
-        appliedNumber = appliedNumber,
-        description = description,
-        responsibilities = responsibilities,
-        questions = questions,
-    )
-}
-
-fun VacancyModel.mapToDto(): VacancyDto {
-    return VacancyDto(
-        id = id,
-        lookingNumber = lookingNumber,
-        title = title,
-        address = addressModel.mapToDto(),
-        company = company,
-        experience = experience.mapToDto(),
-        publishedDate = publishedDate,
-        isFavorite = isFavorite,
-        salary = salaryModel.mapToDto(),
         schedules = schedules,
         appliedNumber = appliedNumber,
         description = description,

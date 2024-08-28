@@ -1,8 +1,5 @@
 package com.example.jobsearch.details.domain.model
 
-import com.example.jobsearch.details.domain.model.ExperienceModel
-import com.example.jobsearch.details.domain.model.SalaryModel
-
 class VacancyModel (
     val id: String,
     val lookingNumber: Int?,

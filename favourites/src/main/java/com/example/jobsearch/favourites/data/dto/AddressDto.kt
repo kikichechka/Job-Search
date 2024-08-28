@@ -15,3 +15,11 @@ fun AddressDto.mapToModel(): AddressModel {
         house = house
     )
 }
+
+fun AddressModel.mapToDto(): AddressDto {
+    return AddressDto(
+        town = town,
+        street = street,
+        house = house
+    )
+}

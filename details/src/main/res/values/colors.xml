@@ -6,4 +6,6 @@
     <color name="basic_grey">#858688</color>
     <color name="average_grey">#313234</color>
     <color name="green">#4CB24E</color>
+    <color name="black">#FF000000</color>
+    <color name="basic_black">#0C0C0C</color>
 </resources>

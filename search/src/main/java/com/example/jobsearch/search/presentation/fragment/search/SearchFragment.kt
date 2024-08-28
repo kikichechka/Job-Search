@@ -22,7 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
@@ -61,6 +60,7 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         loadData()
         createRecommendationsAdapter()
         createVacancyAdapter()
@@ -100,6 +100,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun subscribeAllVacancy() {
+        binding.recyclerVacanciesForYou.adapter = vacancyAdapter
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.vacancy.collect {
                 allListVacancies = it
@@ -110,8 +111,6 @@ class SearchFragment : Fragment() {
                     vacancyAdapter.changeData(partList)
                     vacancyAdapter.changeCountVacancies(countVacancies)
                 }
-
-                binding.recyclerVacanciesForYou.adapter = vacancyAdapter
             }
         }
     }

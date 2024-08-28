@@ -12,7 +12,6 @@ class DetailsViewModelsFactory @Inject constructor(
         if (modelClass.isAssignableFrom(DetailsViewModel::class.java)) {
             return detailsViewModel as T
         }
-
         throw IllegalAccessException("Unknown class name")
     }
 }

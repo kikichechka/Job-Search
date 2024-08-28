@@ -13,7 +13,6 @@ import com.example.jobsearch.input.CallbackChecking
 import com.example.jobsearch.input.CallbackLog
 import com.example.jobsearch.input.fragment.CheckingAccountFragment
 import com.example.jobsearch.search.presentation.fragment.compliance.ClickVacancyFromCompliance
-import com.example.jobsearch.search.presentation.fragment.compliance.VacanciesComplianceFragment
 import com.example.jobsearch.search.presentation.fragment.search.ClickAllVacancies
 import com.example.jobsearch.search.presentation.fragment.search.ClickVacancyFromSearch
 import com.example.jobsearch.search.presentation.uimodel.ListVacancies

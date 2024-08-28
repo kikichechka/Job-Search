@@ -21,6 +21,7 @@ fragment-ktx = "1.8.0"
 viewmodel-ktx = "2.8.4"
 room_version = "2.6.1"
 jetbrainsKotlinJvm = "1.9.0"
+retrofit = "2.9.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,6 +44,7 @@ viewmodel-ktx = {group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx",
 room-runtime = {group = "androidx.room", name = "room-runtime", version.ref = "room_version"}
 room-ktx = {group = "androidx.room", name = "room-ktx", version.ref = "room_version"}
 room-compiler = {group = "androidx.room", name = "room-compiler", version.ref = "room_version"}
+retrofit = {group = "com.squareup.retrofit2" , name ="retrofit", version.ref = "retrofit"}
 
 
 [plugins]

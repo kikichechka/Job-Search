@@ -1,6 +1,6 @@
-package com.example.network
+package com.example.jobsearch.search.data
 
-import com.example.network.dto.AllDataRemote
+import com.example.jobsearch.search.data.dto.AllDataDto
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -20,5 +20,5 @@ class MyRetrofit @Inject constructor() {
 
 interface SearchDataApi {
     @GET("/u/0/uc?id=1z4TbeDkbfXkvgpoJprXbN85uCcD7f00r&export=download")
-    suspend fun getOffers(): Response<AllDataRemote>
+    suspend fun getAllData(): Response<AllDataDto>
 }

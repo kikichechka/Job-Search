@@ -5,6 +5,9 @@
     <string name="ask_employer_question">Задайте вопрос работодателю</string>
     <string name="he_will_receive_with_response_vacancy">Он получит его с откликом на вакансию</string>
     <string name="respond">Откликнуться</string>
+    <string name="summary_for_response">Резюме для отклика</string>
+    <string name="add_cover_letter">Добавить сопроводительное</string>
+    <string name="your_cover_letter">Ваше сопроводительное письмо</string>
 
     <plurals name="looking_number_peoples">
         <item quantity="few">%1$d человека сейчас смотрят</item>

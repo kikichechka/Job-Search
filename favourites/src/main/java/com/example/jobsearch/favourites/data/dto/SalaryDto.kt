@@ -13,3 +13,10 @@ fun SalaryDto.mapToModel(): SalaryModel {
         full = full
     )
 }
+
+fun SalaryModel.mapToDto(): SalaryDto {
+    return SalaryDto(
+        short = short,
+        full = full
+    )
+}

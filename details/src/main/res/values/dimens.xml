@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="global_margin">16dp</dimen>
+    <dimen name="button_back_margin">50dp</dimen>
+    <dimen name="icon_sharing_margin">10dp</dimen>
+    <dimen name="icon_eyes_margin">10dp</dimen>
+    <dimen name="title_vacancy_margin">100dp</dimen>
+    <dimen name="container_applied_number_height">50dp</dimen>
+    <dimen name="container_applied_number_margin">20dp</dimen>
+    <dimen name="container_applied_number_margin_end">8dp</dimen>
+    <dimen name="container_applied_number_radius">8dp</dimen>
+    <dimen name="applied_number_margin_start">8dp</dimen>
+    <dimen name="looking_number_padding">8dp</dimen>
+    <dimen name="container_map_margin">20dp</dimen>
+    <dimen name="card_radius">8dp</dimen>
+    <dimen name="verification_icon_margin">10dp</dimen>
+    <dimen name="map_margin">5dp</dimen>
+    <dimen name="your_tasks_padding">5dp</dimen>
+    <dimen name="ask_employer_question_margin">20dp</dimen>
+    <dimen name="he_will_receive_with_response_vacancy_margin">3dp</dimen>
+    <dimen name="button_respond_height">48dp</dimen>
+    <dimen name="avatar_margin">45dp</dimen>
+    <dimen name="title_vacancy_title">5dp</dimen>
+    <dimen name="divider_margin">117dp</dimen>
+    <dimen name="add_cover_letter_margin">40dp</dimen>
+    <dimen name="button_respond_margin">85dp</dimen>
+    <dimen name="item_question_card_radius">50dp</dimen>
+    <dimen name="text_questions_padding">10dp</dimen>
+</resources>

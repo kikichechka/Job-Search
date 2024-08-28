@@ -9,14 +9,14 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/container_search"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/container_search_height"
         android:backgroundTint="@color/average_grey"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="@dimen/container_search_height_radius"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/icon_settings"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="48dp">
+        android:layout_marginHorizontal="@dimen/global_margin"
+        android:layout_marginTop="@dimen/container_search_height_margin_top">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/icon_back"
-                android:layout_marginHorizontal="10dp"
+                android:layout_marginHorizontal="@dimen/button_back_margin"
                 android:layout_gravity="center"/>
 
             <TextView
@@ -38,7 +38,7 @@
                 android:layout_gravity="center"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="@dimen/text_position_keywords_margin"
                 android:text="@string/position_for_suitable_vacancies"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -46,14 +46,14 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/icon_settings"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/icon_settings_width"
+        android:layout_height="@dimen/icon_settings_height"
         android:layout_gravity="end"
         android:backgroundTint="@color/average_grey"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="@dimen/icon_settings_radius"
         app:layout_constraintTop_toTopOf="@id/container_search"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="16dp">
+        android:layout_marginEnd="@dimen/global_margin">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -66,9 +66,8 @@
         android:id="@+id/number_vacancies"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="145 вакансий"
         style="@style/number_vacancies_style"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/global_margin"
         app:layout_constraintTop_toBottomOf="@id/container_search"
         app:layout_constraintStart_toStartOf="@id/container_search"/>
 
@@ -85,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/by_correspondence"
-        android:layout_marginEnd="7dp"
+        android:layout_marginEnd="@dimen/by_correspondence_margin"
         style="@style/by_correspondence_style"
         app:layout_constraintTop_toTopOf="@id/number_vacancies"
         app:layout_constraintEnd_toStartOf="@id/icon_by_correspondence"/>
@@ -94,8 +93,8 @@
         android:id="@+id/recycler_all_vacancies"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="@dimen/global_margin"
+        android:layout_marginHorizontal="@dimen/global_margin"
         app:layout_constraintTop_toBottomOf="@id/number_vacancies"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">

@@ -9,19 +9,18 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="16dp"
-        android:scrollbars="none"
-        android:layout_marginBottom="16dp">
+        android:layout_margin="@dimen/global_margin"
+        android:scrollbars="none">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/button_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="@dimen/button_back_margin"
                 android:src="@drawable/icon_back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +38,7 @@
                 android:id="@+id/icon_sharing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="@dimen/icon_sharing_margin"
                 android:src="@drawable/sharing"
                 app:layout_constraintBottom_toBottomOf="@id/icon_is_favourite"
                 app:layout_constraintEnd_toStartOf="@id/icon_is_favourite"
@@ -49,7 +48,7 @@
                 android:id="@+id/icon_eyes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="@dimen/icon_eyes_margin"
                 android:src="@drawable/eyes"
                 app:layout_constraintBottom_toBottomOf="@id/icon_sharing"
                 app:layout_constraintEnd_toStartOf="@id/icon_sharing"
@@ -60,8 +59,7 @@
                 style="@style/title_vacancy_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:text="UI/UX Designer"
+                android:layout_marginTop="@dimen/title_vacancy_margin"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -69,8 +67,7 @@
                 style="@style/salary_full_experience_schedules_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Уровень дохода не указан"
+                android:layout_marginTop="@dimen/global_margin"
                 app:layout_constraintTop_toBottomOf="@id/title_vacancy" />
 
             <TextView
@@ -78,8 +75,7 @@
                 style="@style/salary_full_experience_schedules_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Требуемый опыт: от 1 года до 3 лет"
+                android:layout_marginTop="@dimen/global_margin"
                 app:layout_constraintTop_toBottomOf="@id/salary_full" />
 
             <TextView
@@ -87,17 +83,16 @@
                 style="@style/salary_full_experience_schedules_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Полная занятость, полный день"
                 app:layout_constraintTop_toBottomOf="@id/experience_text" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/container_applied_number"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="8dp"
+                android:layout_height="@dimen/container_applied_number_height"
+                android:layout_marginTop="@dimen/container_applied_number_margin"
+                android:layout_marginEnd="@dimen/container_applied_number_margin_end"
                 android:backgroundTint="@color/dark_green"
-                app:cardCornerRadius="8dp"
+                app:cardCornerRadius="@dimen/container_applied_number_radius"
                 android:visibility="gone"
                 app:layout_constraintEnd_toStartOf="@id/container_lookingNumber"
                 app:layout_constraintStart_toStartOf="parent"
@@ -115,14 +110,13 @@
                         android:layout_height="match_parent"
                         android:layout_weight="4"
                         android:gravity="center_vertical"
-                        android:paddingStart="8dp"
-                        android:text="147 человек уже откликнулись" />
+                        android:paddingStart="@dimen/applied_number_margin_start" />
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:padding="8dp"
+                        android:padding="@dimen/applied_number_margin_start"
                         android:src="@drawable/man" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -131,11 +125,11 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/container_lookingNumber"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="@dimen/container_applied_number_height"
+                android:layout_marginTop="@dimen/container_applied_number_margin"
+                android:layout_marginEnd="@dimen/container_applied_number_margin_end"
                 android:backgroundTint="@color/dark_green"
-                app:cardCornerRadius="8dp"
+                app:cardCornerRadius="@dimen/container_applied_number_radius"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/container_applied_number"
@@ -147,20 +141,19 @@
                     android:weightSum="5">
 
                     <TextView
-                        android:id="@+id/lookingNumber"
+                        android:id="@+id/looking_number"
                         style="@style/applied_number_style"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="4"
                         android:gravity="center_vertical"
-                        android:paddingStart="8dp"
-                        android:text="2 человека сейчас смотрят" />
+                        android:paddingStart="@dimen/looking_number_padding"/>
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:padding="8dp"
+                        android:padding="@dimen/looking_number_padding"
                         android:src="@drawable/man" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -169,15 +162,15 @@
                 android:id="@+id/container_map"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/container_map_margin"
                 android:backgroundTint="@color/dark_average_grey"
-                app:cardCornerRadius="8dp"
+                app:cardCornerRadius="@dimen/card_radius"
                 app:layout_constraintTop_toBottomOf="@id/container_applied_number">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                    android:layout_margin="@dimen/global_margin"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -189,21 +182,20 @@
                             android:id="@+id/title_company"
                             style="@style/title_company_style"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Мобирикс" />
+                            android:layout_height="wrap_content" />
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="@dimen/verification_icon_margin"
                             android:src="@drawable/verification_icon" />
                     </LinearLayout>
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="5dp"
+                        android:layout_marginVertical="@dimen/map_margin"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
                         android:src="@drawable/map" />
@@ -212,8 +204,7 @@
                         android:id="@+id/address"
                         style="@style/address_style"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Минск, улица Бирюзова, 4/5" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -222,7 +213,7 @@
                 style="@style/description_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/global_margin"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/container_map" />
 
@@ -231,7 +222,7 @@
                 style="@style/you_tasks_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="5dp"
+                android:paddingVertical="@dimen/your_tasks_padding"
                 android:text="@string/your_tasks"
                 app:layout_constraintTop_toBottomOf="@id/description" />
 
@@ -240,7 +231,6 @@
                 style="@style/description_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="-Проектировать пользовательский опыт, проводить UX исследования; -Разрабатывать адаптивный дизайн интерфейса для мобильных приложений; -Разрабатывать быстрые прототипы для тестирования идеи дизайна и их последующая; интеграция на основе обратной связи от команды и пользователей; -Взаимодействовать с командой разработчиков для обеспечения точной реализации ваших дизайнов; -Анализ пользовательского опыта и адаптация под тренды."
                 app:layout_constraintTop_toBottomOf="@id/your_tasks" />
 
             <TextView
@@ -248,7 +238,7 @@
                 style="@style/description_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/ask_employer_question_margin"
                 android:text="@string/ask_employer_question"
                 app:layout_constraintTop_toBottomOf="@id/responsibilities" />
 
@@ -257,7 +247,7 @@
                 style="@style/he_will_receive_with_response_vacancy_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="@dimen/he_will_receive_with_response_vacancy_margin"
                 android:text="@string/he_will_receive_with_response_vacancy"
                 app:layout_constraintTop_toBottomOf="@id/ask_employer_question" />
 
@@ -265,7 +255,7 @@
                 android:id="@+id/linear_layout_for_item_question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/global_margin"
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@id/he_will_receive_with_response_vacancy" />
 
@@ -273,10 +263,10 @@
                 android:id="@+id/button_respond"
                 style="@style/button_respond_style"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/button_respond_height"
                 android:background="@drawable/button"
                 android:shadowRadius="8"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/global_margin"
                 android:text="@string/respond"
                 app:backgroundTint="@null"
                 app:layout_constraintTop_toBottomOf="@id/linear_layout_for_item_question" />

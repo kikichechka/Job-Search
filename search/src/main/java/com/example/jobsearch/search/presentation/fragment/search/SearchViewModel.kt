@@ -16,9 +16,7 @@ import com.example.model.Experience
 import com.example.model.Salary
 import com.example.model.Vacancy
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(
@@ -117,7 +115,7 @@ fun Vacancy.mapToDomain(): VacancyModel {
         addressModel = AddressModel(
             town = address.town,
             street = address.street,
-            house = address.street
+            house = address.house
         ),
         company = company,
         experienceModel = ExperienceModel(

@@ -8,22 +8,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.jobsearch.details.R
 import com.example.jobsearch.details.databinding.FragmentDetailsBinding
 import com.example.jobsearch.details.presenter.DetailsViewModelsFactory
-import com.example.jobsearch.details.presenter.ItemQuestionsCustomView
+import com.example.jobsearch.details.presenter.model.UiModel
 import com.example.jobsearch.details.presenter.viewmodel.DetailsViewModel
 import com.example.model.Vacancy
 import com.example.model.callback.ClickFavouriteVacancy
 import com.example.model.callback.ClickFoundInSearch
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.util.Locale
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,7 +30,6 @@ class DetailsFragment : Fragment() {
     private var vacancy: Vacancy? = null
     private lateinit var clickFavouriteVacancy: ClickFavouriteVacancy
     private lateinit var clickFoundInSearch: ClickFoundInSearch
-
 
     @Inject
     lateinit var detailsViewModelsFactory: DetailsViewModelsFactory
@@ -74,48 +69,64 @@ class DetailsFragment : Fragment() {
     }
 
     private fun showVacancy() {
-        buttonBackClick()
-        iconIsFavouriteClick()
-        installIconIsFavourite()
-        titleVacancy()
-        titleSalary()
-        titleCompany()
-        address()
-        lookingNumber()
-        appliedNumber()
-        description()
-        responsibilities()
-        addQuestions()
-        buttonRespondClick()
-        schedules()
+        vacancy?.let {
+            buttonBackClick()
+            iconIsFavouriteClick()
+            installIconIsFavourite()
+            titleVacancy()
+            titleSalary()
+            titleCompany()
+            address()
+            lookingNumber()
+            appliedNumber()
+            description()
+            responsibilities()
+            addQuestions(it)
+            buttonRespondClick(it)
+            schedules()
+        }
     }
 
-    private fun buttonRespondClick() {
+    private fun buttonRespondClick(vacancy: Vacancy) {
         binding.buttonRespond.setOnClickListener {
-            // вызов отклика
+            val responseDialog = ResponseDialogFragment()
+            val bundle = Bundle()
+            val uiModel = UiModel(vacancy.title, null)
+            bundle.putParcelable(
+                ResponseDialogFragment.ARG_PARAM_TASK,
+                uiModel
+            )
+            responseDialog.arguments = bundle
+            responseDialog.show(childFragmentManager, ResponseDialogFragment.TAG)
         }
     }
 
     private fun schedules() {
         val strSchedules = vacancy?.schedules?.joinToString(separator = SEPARATOR)
-        val strSchedulesUpperCase = strSchedules?.replaceFirstChar { it.uppercaseChar()}
-        binding.schedules.text =strSchedulesUpperCase
+        val strSchedulesUpperCase = strSchedules?.replaceFirstChar { it.uppercaseChar() }
+        binding.schedules.text = strSchedulesUpperCase
     }
 
-    private fun addQuestions() {
-        vacancy?.questions?.let { listStr ->
-            for (str in listStr) {
-                val itemQuestion = ItemQuestionsCustomView(requireContext())
-                itemQuestion.binding.textQuestions.text = str
-                itemQuestion.setOnClickListener {
-                    // вызов отклика
-                }
-                binding.linearLayoutForItemQuestion.addView(itemQuestion)
+    private fun addQuestions(vacancy: Vacancy) {
+        for (str in vacancy.questions) {
+            val itemQuestion = ItemQuestionsCustomView(requireContext())
+            itemQuestion.binding.textQuestions.text = str
+            itemQuestion.setOnClickListener {
+                val responseDialog = ResponseDialogFragment()
+                val bundle = Bundle()
+                val uiModel = UiModel(vacancy.title, str)
+                bundle.putParcelable(
+                    ResponseDialogFragment.ARG_PARAM_TASK,
+                    uiModel
+                )
+                responseDialog.arguments = bundle
+                responseDialog.show(childFragmentManager, ResponseDialogFragment.TAG)
             }
+            binding.linearLayoutForItemQuestion.addView(itemQuestion)
         }
     }
 
-    private fun description () {
+    private fun description() {
         vacancy?.description?.let {
             binding.description.visibility = View.VISIBLE
             binding.description.text = it
@@ -148,7 +159,8 @@ class DetailsFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun address() {
-        binding.address.text = "${vacancy?.address?.town}, ${vacancy?.address?.street}, ${vacancy?.address?.house}"
+        binding.address.text =
+            "${vacancy?.address?.town}, ${vacancy?.address?.street}, ${vacancy?.address?.house}"
     }
 
     private fun titleCompany() {
@@ -203,12 +215,22 @@ class DetailsFragment : Fragment() {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setFavouriteDrawable() {
-        binding.iconIsFavourite.setImageDrawable(resources.getDrawable(R.drawable.favorite_heart, null))
+        binding.iconIsFavourite.setImageDrawable(
+            resources.getDrawable(
+                R.drawable.favorite_heart,
+                null
+            )
+        )
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setNotFavouriteDrawable() {
-        binding.iconIsFavourite.setImageDrawable(resources.getDrawable(R.drawable.not_favorite_heart, null))
+        binding.iconIsFavourite.setImageDrawable(
+            resources.getDrawable(
+                R.drawable.not_favorite_heart,
+                null
+            )
+        )
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

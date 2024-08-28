@@ -12,7 +12,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp">
+        android:layout_marginTop="@dimen/app_bar_layout_margin">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
@@ -25,16 +25,16 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_departure_points"
         android:layout_width="match_parent"
-        android:layout_height="179dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="232dp"
+        android:layout_height="@dimen/card_departure_points_height"
+        android:layout_marginHorizontal="@dimen/global_margin"
+        android:layout_marginTop="@dimen/card_departure_points_margin"
         android:backgroundTint="@color/grey"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="@dimen/card_departure_points_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="@dimen/card_departure_points_constraint_margin"
             android:orientation="vertical">
 
             <TextView
@@ -50,10 +50,10 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_edit_email"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/card_edit_email_height"
                 android:backgroundTint="@color/average_grey"
-                app:cardCornerRadius="8dp"
-                app:strokeWidth="1dp"
+                app:cardCornerRadius="@dimen/card_edit_email_radius"
+                app:strokeWidth="@dimen/card_edit_email_stroke_width"
                 app:strokeColor="@color/average_grey"
                 app:layout_constraintBottom_toTopOf="@id/button_continue"
                 app:layout_constraintTop_toBottomOf="@id/text_job_search">
@@ -62,12 +62,12 @@
                     android:id="@+id/layout_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    app:boxStrokeWidth="0dp"
+                    android:layout_marginStart="@dimen/layout_edit_margin"
+                    app:boxStrokeWidth="@dimen/layout_edit_box_stroke_width"
                     android:layout_gravity="center_vertical"
                     android:textColorHint="@color/light_grey"
                     app:hintTextAppearance="@style/hilt_style"
-                    app:boxStrokeWidthFocused="0dp"
+                    app:boxStrokeWidthFocused="@dimen/layout_edit_box_stroke_focused"
                     app:endIconDrawable="@drawable/close"
                     app:endIconMode="clear_text">
 
@@ -82,8 +82,8 @@
                         android:inputType="textEmailAddress"
                         style="@style/edit_text_style"
                         android:textCursorDrawable="@null"
-                        android:padding="0dp"
-                        android:paddingStart="0dp"
+                        android:padding="@dimen/edit_padding"
+                        android:paddingStart="@dimen/edit_padding"
                         tools:ignore="RtlSymmetry" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -104,8 +104,8 @@
                 android:id="@+id/button_continue"
                 style="@style/button_disabled_continue_style"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="20dp"
+                android:layout_height="@dimen/button_continue_height"
+                android:layout_marginEnd="@dimen/button_continue_margin"
                 android:enabled="false"
                 android:background="@drawable/selector"
                 app:backgroundTint="@null"
@@ -133,16 +133,16 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/search_employees"
         android:layout_width="match_parent"
-        android:layout_height="141dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="427dp"
+        android:layout_height="@dimen/search_employees_height"
+        android:layout_marginHorizontal="@dimen/global_margin"
+        android:layout_marginTop="@dimen/search_employees_margin"
         android:backgroundTint="@color/grey"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="@dimen/search_employees_radius">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginHorizontal="@dimen/global_margin"
             android:orientation="vertical">
 
             <TextView
@@ -167,7 +167,7 @@
                 android:id="@+id/button_search_employees"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Я ищу сотрудников"
+                android:text="@string/i_looking_employees"
                 app:layout_constraintTop_toBottomOf="@id/text_search_employees"
                 app:layout_constraintBottom_toBottomOf="parent"
                 style="@style/button_search_employees"

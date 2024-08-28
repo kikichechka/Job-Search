@@ -9,14 +9,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/average_grey"
-        app:cardCornerRadius="50dp">
+        app:cardCornerRadius="@dimen/item_question_card_radius">
 
     <TextView
         android:id="@+id/text_questions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Где распологается место работы?"
-        android:padding="10dp"
+        android:padding="@dimen/text_questions_padding"
         style="@style/description_style"/>
 
     </androidx.cardview.widget.CardView>

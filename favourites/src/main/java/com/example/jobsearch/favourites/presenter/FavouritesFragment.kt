@@ -85,7 +85,9 @@ class FavouritesFragment : Fragment() {
         binding.recyclerVacanciesForYou.adapter = favouriteVacanciesAdapter
     }
 
-    private fun clickFavorite(vacancy: Vacancy) {}
+    private fun clickFavorite(vacancy: Vacancy) {
+        vacancy.isFavorite
+    }
 
     private fun clickNotFavorite(vacancy: Vacancy) {
         clickFavouriteVacancy.countFavourite(--numberFavouriteVacancies)

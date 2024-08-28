@@ -1,4 +1,4 @@
-package com.example.jobsearch.details.presenter
+package com.example.jobsearch.details.presenter.fragment
 
 import android.content.Context
 import android.widget.FrameLayout

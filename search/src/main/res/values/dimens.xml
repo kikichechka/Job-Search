@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="container_search_height">40dp</dimen>
+    <dimen name="global_margin">16dp</dimen>
+    <dimen name="container_search_height_margin_top">48dp</dimen>
+    <dimen name="container_search_height_radius">8dp</dimen>
+    <dimen name="icon_search_margin">10dp</dimen>
+    <dimen name="icon_settings_width">40dp</dimen>
+    <dimen name="icon_settings_height">40dp</dimen>
+    <dimen name="icon_settings_radius">8dp</dimen>
+    <dimen name="recycler_recommendations_height">120dp</dimen>
+    <dimen name="title_vacancies_for_you_margin">20dp</dimen>
+    <dimen name="button_back_margin">10dp</dimen>
+    <dimen name="text_position_keywords_margin">10dp</dimen>
+    <dimen name="by_correspondence_margin">7dp</dimen>
+    <dimen name="container_search_width">132dp</dimen>
+    <dimen name="container_item_search_height">120dp</dimen>
+    <dimen name="container_search_radius">8dp</dimen>
+    <dimen name="container_search_margin">7dp</dimen>
+    <dimen name="icon_id_margin_top">10dp</dimen>
+    <dimen name="icon_id_margin_start">8dp</dimen>
+    <dimen name="title_item_recommendation_margin_top">58dp</dimen>
+    <dimen name="title_item_recommendation_margin_start">8dp</dimen>
+    <dimen name="title_item_recommendation_margin_end">8dp</dimen>
+    <dimen name="button_offers_margin">8dp</dimen>
+</resources>

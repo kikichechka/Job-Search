@@ -9,7 +9,7 @@ class Offer(
     val link: String
 )
 
-fun OfferModel.mapToUi(): com.example.jobsearch.search.presentation.uimodel.Offer {
+fun OfferModel.mapToUi(): Offer {
     return Offer(
         id = id,
         title = title,

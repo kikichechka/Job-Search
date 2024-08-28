@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="corner_radius_card_view">8dp</dimen>
+    <dimen name="global_margin">16dp</dimen>
+    <dimen name="size_image_is_favourite">24dp</dimen>
+    <dimen name="width_title_vacancy">219dp</dimen>
+    <dimen name="local_margin">10dp</dimen>
+    <dimen name="button_all_vacancies_height">48dp</dimen>
+</resources>

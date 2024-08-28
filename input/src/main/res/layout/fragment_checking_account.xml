@@ -10,8 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="162dp"
+        android:layout_marginHorizontal="@dimen/global_margin"
+        android:layout_marginTop="@dimen/checking_account_linear_layout_margin"
         android:orientation="vertical">
 
         <TextView
@@ -19,21 +19,21 @@
             style="@style/text_sent_code_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="@dimen/global_margin"
             android:text="@string/sent_code_to" />
 
         <TextView
             style="@style/title_sent_code_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="Напишите его, чтобы подтвердить, что это вы, а не кто-то другой входит в личный кабинет" />
+            android:layout_marginBottom="@dimen/global_margin"
+            android:text="@string/confirm_login" />
 
         <LinearLayout
             android:id="@+id/container_for_entered_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="@dimen/global_margin"
             android:orientation="horizontal">
         </LinearLayout>
 
@@ -45,7 +45,7 @@
             android:enabled="false"
             style="@style/button_disabled_continue_style"
             app:backgroundTint="@null"
-            android:text="Подтвердить" />
+            android:text="@string/confirm" />
 
     </LinearLayout>
 

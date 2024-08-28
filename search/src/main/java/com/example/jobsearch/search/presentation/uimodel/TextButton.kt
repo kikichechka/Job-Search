@@ -6,8 +6,8 @@ class TextButton (
     val text: String
 )
 
-fun TextButtonModel.mapToUi(): com.example.jobsearch.search.presentation.uimodel.TextButton {
-    return com.example.jobsearch.search.presentation.uimodel.TextButton(
+fun TextButtonModel.mapToUi(): TextButton {
+    return TextButton(
         text = text
     )
 }

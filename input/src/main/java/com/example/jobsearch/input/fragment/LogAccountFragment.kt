@@ -15,7 +15,6 @@ import com.example.jobsearch.input.R
 import com.example.jobsearch.input.databinding.FragmentLogAccountBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class LogAccountFragment : Fragment() {
 

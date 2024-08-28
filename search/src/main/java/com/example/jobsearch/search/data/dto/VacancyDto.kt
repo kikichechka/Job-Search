@@ -6,7 +6,6 @@ import com.example.database.model.SalaryDb
 import com.example.database.model.VacancyDatabase
 import com.example.database.model.VacancyInfoDb
 import com.example.jobsearch.search.domain.model.VacancyModel
-import com.example.network.dto.VacancyRemote
 
 data class VacancyDto(
     val id: String,
@@ -125,23 +124,3 @@ fun VacancyDatabase.mapToDto(): VacancyDto {
         )
     )
 }
-
-fun VacancyRemote.mapToDto(): VacancyDto {
-    return VacancyDto(
-        id = id,
-        lookingNumber = lookingNumber,
-        title = title,
-        company = company,
-        publishedDate = publishedDate,
-        isFavorite = isFavorite,
-        schedules = schedules,
-        appliedNumber = appliedNumber,
-        description = description,
-        responsibilities = responsibilities,
-        questions = questions,
-        address = address.mapToDto(),
-        experience = experience.mapToDto(),
-        salary = salary.mapToDto()
-    )
-}
-

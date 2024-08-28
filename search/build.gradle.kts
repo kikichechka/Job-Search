@@ -44,7 +44,6 @@ dependencies {
     implementation(project(":core:adapter"))
     implementation(project(":core:model"))
     implementation(project(":core:database"))
-    implementation(project(":core:network"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -58,6 +57,9 @@ dependencies {
 
     implementation(libs.fragment.ktx)
     implementation(libs.viewmodel.ktx)
+
+    implementation(libs.gson)
+    implementation(libs.converter.gson)
 }
 
 kapt {

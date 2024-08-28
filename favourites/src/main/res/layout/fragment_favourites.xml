@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/global_margin"
     tools:context=".presenter.FavouritesFragment">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/title_page_style"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="@dimen/title_page_margin"
         android:text="@string/favourites" />
 
     <TextView
@@ -22,13 +22,13 @@
         android:layout_height="wrap_content"
         style="@style/number_vacancies_style"
         android:textColor="@color/basic_grey"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="@dimen/number_vacancies_margin" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_vacancies_for_you"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/global_margin"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
     </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

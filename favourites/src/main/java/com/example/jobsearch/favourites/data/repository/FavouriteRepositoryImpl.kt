@@ -1,11 +1,10 @@
 package com.example.jobsearch.favourites.data.repository
 
 import com.example.jobsearch.favourites.data.datasource.FavouriteVacanciesLocalDataSource
+import com.example.jobsearch.favourites.data.dto.mapToDto
 import com.example.jobsearch.favourites.data.dto.mapToModel
 import com.example.jobsearch.favourites.domain.model.VacancyModel
 import com.example.jobsearch.favourites.domain.repository.FavouriteRepository
-import com.example.jobsearch.favourites.presenter.mapToDto
-import com.example.jobsearch.favourites.presenter.mapToUi
 import javax.inject.Inject
 
 class FavouriteRepositoryImpl @Inject constructor(

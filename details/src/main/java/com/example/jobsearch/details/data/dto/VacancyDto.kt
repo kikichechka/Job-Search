@@ -27,26 +27,6 @@ class VacancyDto(
     val questions: List<String>,
 )
 
-
-fun VacancyDto.mapToModel(): VacancyModel {
-    return VacancyModel(
-        id = id,
-        lookingNumber = lookingNumber,
-        title = title,
-        addressModel = address.mapToModel(),
-        company = company,
-        experience = experience.mapToModel(),
-        publishedDate = publishedDate,
-        isFavorite = isFavorite,
-        salaryModel = salary.mapToModel(),
-        schedules = schedules,
-        appliedNumber = appliedNumber,
-        description = description,
-        responsibilities = responsibilities,
-        questions = questions
-    )
-}
-
 fun VacancyModel.mapToDto(): VacancyDto {
     return VacancyDto(
         id = id,
@@ -94,64 +74,6 @@ fun VacancyDto.mapToDb(): VacancyDatabase {
         ),
         salary = SalaryDb(
             vacancyId = id,
-            short = salary.short,
-            full = salary.full
-        )
-    )
-}
-
-fun VacancyDatabase.mapToDto(): VacancyDto {
-    return VacancyDto(
-        id = vacancyInfoDb.id,
-        lookingNumber = vacancyInfoDb.lookingNumber,
-        title = vacancyInfoDb.title,
-        company = vacancyInfoDb.company,
-        publishedDate = vacancyInfoDb.publishedDate,
-        isFavorite = vacancyInfoDb.isFavorite,
-        schedules = vacancyInfoDb.schedules,
-        appliedNumber = vacancyInfoDb.appliedNumber,
-        description = vacancyInfoDb.description,
-        responsibilities = vacancyInfoDb.responsibilities,
-        questions = vacancyInfoDb.questions,
-        address = AddressDto(
-            town = address.town,
-            street = address.street,
-            house = address.house
-        ),
-        experience = ExperienceDto(
-            previewText = experience.previewText,
-            text = experience.text
-        ),
-        salary = SalaryDto(
-            short = salary.short,
-            full = salary.full
-        )
-    )
-}
-
-fun VacancyDatabase.mapToModel(): VacancyModel {
-    return VacancyModel(
-        id = vacancyInfoDb.id,
-        lookingNumber = vacancyInfoDb.lookingNumber,
-        title = vacancyInfoDb.title,
-        company = vacancyInfoDb.company,
-        publishedDate = vacancyInfoDb.publishedDate,
-        isFavorite = vacancyInfoDb.isFavorite,
-        schedules = vacancyInfoDb.schedules,
-        appliedNumber = vacancyInfoDb.appliedNumber,
-        description = vacancyInfoDb.description,
-        responsibilities = vacancyInfoDb.responsibilities,
-        questions = vacancyInfoDb.questions,
-        addressModel = AddressModel(
-            town = address.town,
-            street = address.street,
-            house = address.house
-        ),
-        experience = ExperienceModel(
-            previewText = experience.previewText,
-            text = experience.text
-        ),
-        salaryModel = SalaryModel(
             short = salary.short,
             full = salary.full
         )

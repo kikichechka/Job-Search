@@ -13,3 +13,10 @@ fun ExperienceDto.mapToModel(): ExperienceModel {
         text = text
     )
 }
+
+fun ExperienceModel.mapToDto(): ExperienceDto {
+    return ExperienceDto(
+        previewText = previewText,
+        text = text
+    )
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_edit_code_one_width">48dp</dimen>
+    <dimen name="card_edit_code_one_stroke_width">0dp</dimen>
+    <dimen name="card_edit_code_one_margin">10dp</dimen>
+    <dimen name="card_edit_code_one_radius">8dp</dimen>
+    <dimen name="edit_code_one_padding">0dp</dimen>
+    <dimen name="global_margin">16dp</dimen>
+    <dimen name="checking_account_linear_layout_margin">162dp</dimen>
+    <dimen name="app_bar_layout_margin">24dp</dimen>
+    <dimen name="card_departure_points_height">179dp</dimen>
+    <dimen name="card_departure_points_margin">232dp</dimen>
+    <dimen name="card_departure_points_radius">8dp</dimen>
+    <dimen name="card_departure_points_constraint_margin">10dp</dimen>
+    <dimen name="card_edit_email_height">40dp</dimen>
+    <dimen name="card_edit_email_radius">8dp</dimen>
+    <dimen name="card_edit_email_stroke_width">1dp</dimen>
+    <dimen name="layout_edit_margin">10dp</dimen>
+    <dimen name="layout_edit_box_stroke_width">0dp</dimen>
+    <dimen name="layout_edit_box_stroke_focused">0dp</dimen>
+    <dimen name="edit_padding">0dp</dimen>
+    <dimen name="button_continue_height">40dp</dimen>
+    <dimen name="button_continue_margin">20dp</dimen>
+    <dimen name="search_employees_height">141dp</dimen>
+    <dimen name="search_employees_margin">427dp</dimen>
+    <dimen name="search_employees_radius">8dp</dimen>
+</resources>
